@@ -1,3 +1,9 @@
+2014.12.26, v1.0.2
+
+fix:
+- (nupdate) --save-save-dev -> --save-dev
+
+
 2014.12.26, v1.0.1
 
 fix:
