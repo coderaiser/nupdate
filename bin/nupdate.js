@@ -3,8 +3,7 @@
 (function() {
     'use strict';
     
-    var nupdate     = require('..'),
-        
+    var nupdate,
         args        = process.argv.slice(2),
         arg         = args[0],
         dev;
@@ -14,6 +13,8 @@
     } else if (isArg(args, ['-v', '--version'])) {
         console.log('v' + require('../package').version);
     } else {
+        nupdate = require('..');
+        
         if (isArg(args, ['-d', '--dev']))
             dev = true;
         
