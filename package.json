@@ -1,0 +1,32 @@
+{
+  "name": "nupdate",
+  "version": "1.0.0",
+  "description": "update module dependency",
+  "main": "lib/nupdate.js",
+  "bin": {
+    "nupdate": "nupdate.js"
+  },
+  "dependencies": {
+    "rendy": "~1.0.2",
+    "spawnify": "~1.8.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/coderaiser/nupdate"
+  },
+  "keywords": [
+    "npm",
+    "update",
+    "dependency"
+  ],
+  "author": "coderaiser <mnemonic.enemy@gmail.com> (http://coderaiser.github.io/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/coderaiser/nupdate/issues"
+  },
+  "homepage": "https://github.com/coderaiser/nupdate"
+}
