@@ -1,0 +1,5 @@
+2014.12.26, v1.0.1
+
+fix:
+- (package) bin: nupdate -> bin/nupdate
+
