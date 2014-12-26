@@ -1,3 +1,9 @@
+2014.12.26, v1.0.3
+
+feature:
+- (nupdate) spead up "-h" and "-v"
+
+
 2014.12.26, v1.0.2
 
 fix:
