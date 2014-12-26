@@ -1,3 +1,9 @@
+2014.12.26, v1.0.4
+
+fix:
+- (nupdate) indexOf "-" -> regExp "-d|--dev"
+
+
 2014.12.26, v1.0.3
 
 feature:
