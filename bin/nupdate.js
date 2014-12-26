@@ -22,8 +22,12 @@
             console.error('Module name could noe be empty!');
         else
             args.some(function(name) {
-                if (!~arg.indexOf('-'))
+                var result = !/-d|--dev/.test(name);
+                
+                if (result)
                     main(name, dev);
+                
+                return result;
             });
     }
     
