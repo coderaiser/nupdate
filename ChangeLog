@@ -1,3 +1,13 @@
+2015.01.04, v1.0.5
+
+fix:
+- (nupdate) indexOf "-" -> regExp "-d|--dev"
+
+feature:
+- (nupdate) rm isArg
+- (package) v1.0.4
+
+
 2014.12.26, v1.0.4
 
 fix:
