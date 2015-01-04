@@ -8,27 +8,27 @@
         arg         = args[0],
         dev;
     
-    if (!arg || isArg(args, ['-h', '--help'])) {
+    if (!arg || /-h|--help/.test(args)) {
         help();
-    } else if (isArg(args, ['-v', '--version'])) {
+    } else if (/-v|--version/.test(args)) {
         console.log('v' + require('../package').version);
     } else {
         nupdate = require('..');
         
-        if (isArg(args, ['-d', '--dev']))
-            dev = true;
-        
-        if (dev && args.length < 2)
-            console.error('Module name could noe be empty!');
-        else
-            args.some(function(name) {
-                var result = !/-d|--dev/.test(name);
+        args.some(function(name) {
+            var result = !/-d|--dev/.test(name);
+            
+            if (result) {
+                main(name, dev);
+            } else {
+                dev = true;
                 
-                if (result)
-                    main(name, dev);
-                
-                return result;
-            });
+                if (args.length < 2)
+                    console.error('Module name could noe be empty!');
+            }
+            
+            return result;
+        });
     }
     
     function main(name, dev) {
@@ -58,16 +58,5 @@
             var line = '  ' + name + ' ' + bin[name];
             console.log(line);
         });
-    }
-    
-    function isArg(args, params) {
-        var arr = Array.isArray(params) ? params : [params],
-            is  = args.some(function(item) {
-                return arr.some(function(param) {
-                    return ~item.indexOf(param);
-                });
-            });
-        
-        return is;
     }
 })();
