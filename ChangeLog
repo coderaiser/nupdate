@@ -1,3 +1,11 @@
+2015.02.06, v1.0.6
+
+feature:
+- (nupdate) improve regexp
+- (package) v1.0.5
+- (nupdate) rm isArg
+
+
 2015.01.04, v1.0.5
 
 fix:
