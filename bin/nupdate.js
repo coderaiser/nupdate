@@ -16,9 +16,9 @@
         nupdate = require('..');
         
         args.some(function(name) {
-            var result = !/^(-d|--dev)$/.test(name);
+            var notDev = !/^(-d|--dev)$/.test(name);
             
-            if (result) {
+            if (notDev) {
                 main(name, dev);
             } else {
                 dev = true;
@@ -27,7 +27,7 @@
                     console.error('Module name could noe be empty!');
             }
             
-            return result;
+            return notDev;
         });
     }
     
