@@ -8,15 +8,15 @@
         arg         = args[0],
         dev;
     
-    if (!arg || /-h|--help/.test(args)) {
+    if (!arg || /^(-h|--help)$/.test(args)) {
         help();
-    } else if (/-v|--version/.test(args)) {
+    } else if (/^(-v|--version)$/.test(args)) {
         console.log('v' + require('../package').version);
     } else {
         nupdate = require('..');
         
         args.some(function(name) {
-            var result = !/-d|--dev/.test(name);
+            var result = !/^(-d|--dev)$/.test(name);
             
             if (result) {
                 main(name, dev);
