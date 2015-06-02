@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "rendy": "~1.1.0",
-    "spawnify": "~1.8.3"
+    "spawnify": "~2.0.0"
   },
   "devDependencies": {},
   "scripts": {
