@@ -4,47 +4,52 @@
     'use strict';
     
     var nupdate,
-        args        = process.argv.slice(2),
-        arg         = args[0],
-        dev;
-    
-    if (!arg || /^(-h|--help)$/.test(args)) {
+        argv        = process.argv.slice(2),
+        args        = require('minimist')(argv, {
+            string: [
+            ],
+            boolean: [
+                'version',
+                'help',
+                'dev',
+            ],
+            alias: {
+                v: 'version',
+                h: 'help',
+                d: 'dev'
+            }
+        });
+    console.log(args)
+    if (!args.length && args.help) {
         help();
-    } else if (/^(-v|--version)$/.test(args)) {
+    } else if (args.version) {
         console.log('v' + require('../package').version);
     } else {
         nupdate = require('..');
         
-        args.some(function(name) {
-            var is = !/^(-d|--dev)$/.test(name);
-            
-            if (is) {
-                dev = true;
-                
-                if (args.length < 2)
-                    throw(Error('Module name could not be empty!'));
-            }
-            
-            return is;
-        });
-        
-        main(name, dev);
+        main(args._[0], args.dev);
     }
     
     function main(name, dev) {
-        var update = nupdate(name, {dev: dev});
+        var update;
         
-        update.on('error', function(error) {
-            process.stderr.write(error.message);
-        });
-        
-        update.on('data', function(data) {
-            process.stdout.write(data);
-        });
-        
-        update.on('close', function() {
-            update = null;
-        });
+        if (!name) {
+            console.error('Module name could not be empty');
+        } else {
+            update = nupdate(name, {dev: dev});
+            
+            update.on('error', function(error) {
+                process.stderr.write(error.message);
+            });
+            
+            update.on('data', function(data) {
+                process.stdout.write(data);
+            });
+            
+            update.on('close', function() {
+                update = null;
+            });
+        }
     }
     
     function help() {
