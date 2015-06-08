@@ -19,7 +19,7 @@
                 d: 'dev'
             }
         });
-    console.log(args)
+    
     if (!args.length && args.help) {
         help();
     } else if (args.version) {
