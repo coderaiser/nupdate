@@ -16,19 +16,19 @@
         nupdate = require('..');
         
         args.some(function(name) {
-            var notDev = !/^(-d|--dev)$/.test(name);
+            var is = !/^(-d|--dev)$/.test(name);
             
-            if (notDev) {
-                main(name, dev);
-            } else {
+            if (is) {
                 dev = true;
                 
                 if (args.length < 2)
-                    console.error('Module name could noe be empty!');
+                    throw(Error('Module name could not be empty!'));
             }
             
-            return notDev;
+            return is;
         });
+        
+        main(name, dev);
     }
     
     function main(name, dev) {
