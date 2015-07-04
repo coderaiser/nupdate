@@ -1,6 +1,7 @@
 # Nupdate
 
 Update node modules dependecy and change `package.json` if version is bigger.
+For bower you could use [bupdate](https://coderaiser/bupdate "bupdate").
 Same as:
 
 ```sh
