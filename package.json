@@ -9,7 +9,7 @@
   "dependencies": {
     "minimist": "~1.1.1",
     "rendy": "~1.1.0",
-    "spawnify": "~2.0.0"
+    "spawnify": "~2.1.0"
   },
   "devDependencies": {},
   "scripts": {
