@@ -7,7 +7,7 @@
     "nupdate": "bin/nupdate.js"
   },
   "dependencies": {
-    "minimist": "~1.1.1",
+    "minimist": "~1.2.0",
     "rendy": "~1.1.0",
     "spawnify": "~2.1.0"
   },
