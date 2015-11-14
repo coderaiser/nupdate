@@ -1,6 +1,6 @@
 {
   "name": "nupdate",
-  "version": "1.0.13",
+  "version": "2.0.0",
   "description": "update module dependency",
   "main": "lib/nupdate.js",
   "bin": {

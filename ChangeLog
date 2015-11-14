@@ -1,3 +1,9 @@
+2015.11.14, v2.0.0
+
+feature:
+- (nupdate) add ability to correctly update dependency when it removed from node_modules
+
+
 2015.08.24, v1.0.13
 
 feature:
