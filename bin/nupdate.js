@@ -31,23 +31,24 @@
     }
     
     function main(name, dev) {
-        var update;
-        
         if (!name) {
             console.error('Module name could not be empty');
         } else {
-            update = nupdate(name, {dev: dev});
-            
-            update.on('error', function(error) {
-                process.stderr.write(error.message);
-            });
-            
-            update.on('data', function(data) {
-                process.stdout.write(data);
-            });
-            
-            update.on('close', function() {
-                update = null;
+            nupdate(name, {dev: dev}, function(error, update) {
+                if (error)
+                    return console.error(error.message);
+                
+                update.on('error', function(error) {
+                    process.stderr.write(error.message);
+                });
+                
+                update.on('data', function(data) {
+                    process.stdout.write(data);
+                });
+                
+                update.on('close', function() {
+                    update = null;
+                });
             });
         }
     }
