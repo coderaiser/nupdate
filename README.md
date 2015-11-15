@@ -27,6 +27,7 @@ nupdate spawnify
 -v, --version   - show version number and exit
 -h, --help      - show help and exit
 -d, --dev       - update development dependencies
+-a, --auto      - determine dependencies type and update them
 ```
 
 ### Use as module

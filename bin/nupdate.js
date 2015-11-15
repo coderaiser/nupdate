@@ -27,14 +27,17 @@
     } else {
         nupdate = require('..');
         
-        main(args._[0], args.dev);
+        main(args._[0], {
+            dev: args.dev,
+            auto: args.auto
+        });
     }
     
-    function main(name, dev) {
+    function main(name, options) {
         if (!name) {
             console.error('Module name could not be empty');
         } else {
-            nupdate(name, {dev: dev}, function(error, update) {
+            nupdate(name, options, function(error, update) {
                 if (error)
                     return console.error(error.message);
                 
