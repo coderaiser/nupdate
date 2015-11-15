@@ -1,3 +1,9 @@
+2015.11.15, v2.1.0
+
+feature:
+- (nupdate) -a, --auto: determine dependencies type
+
+
 2015.11.14, v2.0.0
 
 feature:
