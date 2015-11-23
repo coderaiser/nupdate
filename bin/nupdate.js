@@ -19,6 +19,12 @@
                 h: 'help',
                 d: 'dev',
                 a: 'auto'
+            },
+            unknown: function(cmd) {
+                var msg = '\'%s\' is not a nupdate option. See \'nupdate --help\'.';
+                
+                if (/^--?/.test(cmd))
+                    exit(msg, cmd);
             }
         });
     
@@ -58,6 +64,11 @@
         }
     }
     
+    function exit() {
+        console.error.apply(console, arguments);
+        process.exit(1);
+    }
+
     function help() {
         var bin     = require('../json/help'),
             usage   = 'Usage: nupdate [options]';
