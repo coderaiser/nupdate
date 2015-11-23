@@ -12,11 +12,13 @@
                 'version',
                 'help',
                 'dev',
+                'auto'
             ],
             alias: {
                 v: 'version',
                 h: 'help',
-                d: 'dev'
+                d: 'dev',
+                a: 'auto'
             }
         });
     
