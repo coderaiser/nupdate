@@ -1,3 +1,13 @@
+2015.12.12, v3.0.0
+
+fix:
+- (nupdate) add -a, --auto
+
+feature:
+- (nupdate) set --auto true to default
+- (nupdate) exit on wrong option
+
+
 2015.11.23, v2.1.2
 
 fix:
