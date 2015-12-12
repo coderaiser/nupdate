@@ -14,6 +14,9 @@
                 'dev',
                 'auto'
             ],
+            default: {
+                auto: true
+            },
             alias: {
                 v: 'version',
                 h: 'help',
@@ -37,7 +40,7 @@
         
         main(args._[0], {
             dev: args.dev,
-            auto: args.auto
+            auto: !args.dev && args.auto
         });
     }
     

@@ -2,5 +2,5 @@
     "-h, --help     ": "display this help and exit",
     "-v, --version  ": "output version information and exit",
     "-d, --dev      ": "update development dependencies",
-    "-a, --auto     ": "determine dependencies type and update them"
+    "--no-auto      ": "not determine dependencies type before update"
 }
