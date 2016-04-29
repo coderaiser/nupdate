@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "async": "^2.0.0-rc.1",
-    "jessy": "^1.0.1",
+    "jessy": "^1.1.0",
     "minimist": "^1.2.0",
     "readjson": "^1.1.1",
     "rendy": "^1.1.0",
