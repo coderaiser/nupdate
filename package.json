@@ -12,7 +12,7 @@
     "minimist": "^1.2.0",
     "readjson": "^1.1.1",
     "rendy": "^1.1.0",
-    "spawnify": "^2.1.0"
+    "spawnify": "^3.0.0"
   },
   "devDependencies": {},
   "scripts": {
