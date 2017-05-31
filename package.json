@@ -10,6 +10,7 @@
     "lint": "redrun lint:*",
     "lint:eslint": "eslint lib",
     "lint:eslint:bin": "eslint --rule 'no-console:0' bin",
+    "prepublish": "rm package-lock.json",
     "postpublish": "npm i -g"
   },
   "dependencies": {
