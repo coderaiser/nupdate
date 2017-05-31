@@ -33,10 +33,10 @@ nupdate spawnify
 ### Use as module
 
 ```js
-var nupdate = require('nupdate');
-    update  = nupdate('spawnify', {
-        dev: false // default
-    });
+const nupdate = require('nupdate');
+const update  = nupdate('spawnify', {
+    dev: false // default
+});
 
 update.on('error', function(error) {
     process.stderr.write(error);
@@ -47,7 +47,7 @@ update.on('data', function(data) {
 });
 
 update.on('close', function() {
-    update = null;
+    console.log('done');
 });
 ```
 
