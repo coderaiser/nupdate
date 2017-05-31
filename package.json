@@ -6,6 +6,11 @@
   "bin": {
     "nupdate": "bin/nupdate.js"
   },
+  "scripts": {
+    "lint": "redrun lint:*",
+    "lint:eslint": "eslint lib",
+    "lint:eslint:bin": "eslint --rule 'no-console:0' bin"
+  },
   "dependencies": {
     "async": "^2.4.1",
     "jessy": "^2.0.0",
@@ -14,12 +19,11 @@
     "rendy": "^1.1.0",
     "spawnify": "^3.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^3.19.0"
+  },
   "engines": {
     "node": ">=4"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
