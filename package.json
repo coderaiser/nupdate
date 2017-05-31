@@ -7,7 +7,7 @@
     "nupdate": "bin/nupdate.js"
   },
   "dependencies": {
-    "async": "^2.0.0-rc.1",
+    "async": "^2.4.1",
     "jessy": "^2.0.0",
     "minimist": "^1.2.0",
     "readjson": "^1.1.1",
