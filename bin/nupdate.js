@@ -2,9 +2,8 @@
 
 'use strict';
 
-var nupdate;
-var argv = process.argv.slice(2);
-var args = require('minimist')(argv, {
+const argv = process.argv.slice(2);
+const args = require('minimist')(argv, {
     string: [
     ],
     boolean: [
@@ -22,8 +21,8 @@ var args = require('minimist')(argv, {
         d: 'dev',
         a: 'auto'
     },
-    unknown: function(cmd) {
-        var msg = '\'%s\' is not a nupdate option. See \'nupdate --help\'.';
+    unknown: (cmd) => {
+        const msg = '\'%s\' is not a nupdate option. See \'nupdate --help\'.';
         
         if (/^--?/.test(cmd))
             exit(msg, cmd);
@@ -35,8 +34,6 @@ if (!args.length && args.help) {
 } else if (args.version) {
     console.log('v' + require('../package').version);
 } else {
-    nupdate = require('..');
-    
     main(args._[0], {
         dev: args.dev,
         auto: !args.dev && args.auto
@@ -47,19 +44,21 @@ function main(name, options) {
     if (!name)
         return console.error('Module name could not be empty');
     
-    nupdate(name, options, function(error, update) {
+    const nupdate = require('..');
+    
+    nupdate(name, options, (error, update) => {
         if (error)
             return console.error(error.message);
         
-        update.on('error', function(error) {
+        update.on('error', (error) => {
             process.stderr.write(error.message);
         });
         
-        update.on('data', function(data) {
+        update.on('data', (data) => {
             process.stdout.write(data);
         });
         
-        update.on('close', function() {
+        update.on('close', () => {
             update = null;
         });
     });
@@ -71,15 +70,18 @@ function exit() {
 }
 
 function help() {
-    var bin = require('../json/help');
-    var usage = 'Usage: nupdate [options]';
+    const bin = require('../json/help');
+    const usage = 'Usage: nupdate [options]';
     
     console.log(usage);
     console.log('Options:');
     
-    Object.keys(bin).forEach(function(name) {
-        var line = '  ' + name + ' ' + bin[name];
-        console.log(line);
-    });
+    Object.keys(bin)
+        .map((name) => {
+            return `  '${name} ${bin[name]}`;
+        })
+        .forEach((line) => {
+            console.log(line);
+        });
 }
 
