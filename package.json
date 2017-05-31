@@ -9,7 +9,8 @@
   "scripts": {
     "lint": "redrun lint:*",
     "lint:eslint": "eslint lib",
-    "lint:eslint:bin": "eslint --rule 'no-console:0' bin"
+    "lint:eslint:bin": "eslint --rule 'no-console:0' bin",
+    "postpublish": "npm i -g"
   },
   "dependencies": {
     "async": "^2.4.1",
