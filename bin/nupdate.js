@@ -4,13 +4,12 @@
 
 const argv = process.argv.slice(2);
 const args = require('minimist')(argv, {
-    string: [
-    ],
     boolean: [
         'version',
         'help',
         'dev',
-        'auto'
+        'auto',
+        'save-exact',
     ],
     default: {
         auto: true
@@ -19,7 +18,8 @@ const args = require('minimist')(argv, {
         v: 'version',
         h: 'help',
         d: 'dev',
-        a: 'auto'
+        a: 'auto',
+        E: 'save-exact',
     },
     unknown: (cmd) => {
         const msg = '\'%s\' is not a nupdate option. See \'nupdate --help\'.';
@@ -36,7 +36,8 @@ if (!args.length && args.help) {
 } else {
     main(args._[0], {
         dev: args.dev,
-        auto: !args.dev && args.auto
+        auto: !args.dev && args.auto,
+        saveExact: args['save-exact'],
     });
 }
 
