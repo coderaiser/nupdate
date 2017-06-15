@@ -1,3 +1,10 @@
+2017.06.15, v5.0.1
+
+fix:
+- (package) redrun
+- (nupdate) rmLastNewLine
+
+
 2017.06.15, v5.0.0
 
 fix:
