@@ -68,12 +68,12 @@ function main(name, options) {
         .then(version)
         .then(update(name, options))
         .then(save)
-        .then(ifInstall(options.install))
-        .then(ifCommit(options.commit))
+        .then(ifInstall(options.install, name))
+        .then(ifCommit(options.commit, name, version))
         .catch(onError);
 }
 
-function _ifInstall(is) {
+function _ifInstall(is, name) {
     if (!is)
         return;
      
@@ -81,7 +81,7 @@ function _ifInstall(is) {
         .then(console.log)
 }
 
-function _ifCommit(is) {
+function _ifCommit(is, name, version) {
     if (!is)
         return;
     
