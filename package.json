@@ -1,6 +1,6 @@
 {
   "name": "nupdate",
-  "version": "5.1.5",
+  "version": "5.1.6",
   "description": "update node module dependency in package.json",
   "main": "lib/nupdate.js",
   "bin": {
