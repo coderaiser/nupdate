@@ -1,3 +1,12 @@
+2017.06.15, v5.0.0
+
+fix:
+- (nupdate) add new line at the end
+
+feature:
+- (nupdate) speed up updating of a dependency: optional install
+
+
 2017.05.31, v4.1.2
 
 feature:
