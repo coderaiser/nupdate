@@ -14,6 +14,7 @@ const ifInstall = wraptile(_ifInstall);
 const ifCommit = wraptile(_ifCommit);
 
 const cwd = process.cwd;
+const stdout = process.stdout;
 
 const argv = process.argv.slice(2);
 const args = require('minimist')(argv, {
@@ -79,7 +80,7 @@ function _ifInstall(is, name) {
         return;
      
     return tryExec(`npm i ${name}`)
-        .then(console.log)
+        .then(stdout.write)
 }
 
 function _ifCommit(is, name, version) {
@@ -92,7 +93,7 @@ function _ifCommit(is, name, version) {
     ].join('&&');
     
     return tryExec(cmd)
-        .then(console.log)
+        .then(stdout.write)
 }
 
 function _update(name, options, version) {
