@@ -10,7 +10,6 @@
     "lint": "redrun lint:*",
     "lint:eslint": "eslint lib",
     "lint:eslint:bin": "eslint --rule 'no-console:0' bin",
-    "prepublish": "rm -f package-lock.json",
     "postpublish": "npm i -g",
     "test": "tape test/*.js",
     "coverage": "nyc npm test",
@@ -33,6 +32,7 @@
     "eslint": "^4.0.0",
     "nodemon": "^1.11.0",
     "nyc": "^11.0.2",
+    "redrun": "^5.9.15",
     "tape": "^4.6.3"
   },
   "engines": {
@@ -52,6 +52,5 @@
   "bugs": {
     "url": "https://github.com/coderaiser/nupdate/issues"
   },
-  "homepage": "https://github.com/coderaiser/nupdate",
-  "false": {}
+  "homepage": "https://github.com/coderaiser/nupdate"
 }
