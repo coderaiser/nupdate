@@ -41,6 +41,7 @@ if (!args.length && args.help) {
         exact: args['save-exact'],
         install: args.install,
         dev: args.dev,
+        commit: args.commit,
     });
 }
 
