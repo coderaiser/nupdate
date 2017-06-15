@@ -58,6 +58,7 @@ function main(name, options) {
         .then(JSON.parse)
         .then(getVersion)
         .then(update(name, options))
+        .then(rmlastNewLine)
         .then(save)
         .catch(onError);
     
@@ -66,6 +67,10 @@ function main(name, options) {
     
     tryExec(`npm i ${name}`)
         .catch(onError);
+}
+
+function rmLastNewLine(str) {
+    return str.slice(0, -1);
 }
 
 function _update(name, options, version) {
