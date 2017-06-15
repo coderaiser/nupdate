@@ -4,6 +4,15 @@
 
 const fs = require('fs');
 const execSync = require('child_process').execSync;
+const promisify = require('es6-promisify');
+const currify = require('currify');
+const wraptile = require('wraptile');
+
+const tryExec = promisify(_tryExec);
+const update = currify(_update);
+const ifInstall = wraptile(_ifInstall);
+const ifCommit = wraptile(_ifCommit);
+
 const cwd = process.cwd;
 
 const argv = process.argv.slice(2);
@@ -49,16 +58,8 @@ function main(name, options) {
     if (!name)
         return console.error('Module name could not be empty');
     
-    const promisify = require('es6-promisify');
-    const currify = require('currify');
-    const wraptile = require('wraptile');
     const fullstore = require('fullstore');
     const version = fullstore();
-    
-    const tryExec = promisify(_tryExec);
-    const update = currify(_update);
-    const ifInstall = wraptile(_ifInstall);
-    const ifCommit = wraptile(_ifCommit);
     
     const cmd = `npm info ${name} --json`;
     
