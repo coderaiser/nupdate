@@ -81,7 +81,7 @@ function _ifInstall(is) {
         .then(console.log)
 }
 
-function ifCommit(is) {
+function _ifCommit(is) {
     if (!is)
         return;
     
