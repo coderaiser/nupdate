@@ -1,3 +1,9 @@
+2017.06.15, v5.1.9
+
+fix:
+- (nupdate) process.stdout
+
+
 2017.06.15, v5.1.8
 
 feature:
