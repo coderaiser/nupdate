@@ -1,7 +1,7 @@
 {
   "name": "nupdate",
   "version": "4.1.2",
-  "description": "update module dependency",
+  "description": "update node module dependency in package.json",
   "main": "lib/nupdate.js",
   "bin": {
     "nupdate": "bin/nupdate.js"
@@ -11,18 +11,29 @@
     "lint:eslint": "eslint lib",
     "lint:eslint:bin": "eslint --rule 'no-console:0' bin",
     "prepublish": "rm -f package-lock.json",
-    "postpublish": "npm i -g"
+    "postpublish": "npm i -g",
+    "test": "tape test/*.js",
+    "coverage": "nyc npm test",
+    "report": "nyc report --reporter=text-lcov | coveralls",
+    "watcher": "nodemon -w test -w lib --exec",
+    "watch:test": "npm run watcher -- npm test"
   },
   "dependencies": {
-    "async": "^2.4.1",
-    "jessy": "^2.0.0",
+    "currify": "^2.0.4",
+    "detect-indent": "^5.0.0",
+    "es6-promisify": "^5.0.0",
+    "jessy": "^2.0.1",
+    "jonny": "^1.0.1",
     "minimist": "^1.2.0",
-    "readjson": "^1.1.1",
-    "rendy": "^1.1.0",
-    "spawnify": "^3.0.0"
+    "nessy": "^2.0.0",
+    "try-catch": "^1.0.0"
   },
   "devDependencies": {
-    "eslint": "^3.19.0"
+    "coveralls": "^2.13.1",
+    "eslint": "^4.0.0",
+    "nodemon": "^1.11.0",
+    "nyc": "^11.0.2",
+    "tape": "^4.6.3"
   },
   "engines": {
     "node": ">=4"
@@ -41,5 +52,6 @@
   "bugs": {
     "url": "https://github.com/coderaiser/nupdate/issues"
   },
-  "homepage": "https://github.com/coderaiser/nupdate"
+  "homepage": "https://github.com/coderaiser/nupdate",
+  "false": {}
 }

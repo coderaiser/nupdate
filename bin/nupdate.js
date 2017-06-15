@@ -2,24 +2,25 @@
 
 'use strict';
 
+const fs = require('fs');
+const execSync = require('child_process').execSync;
+const cwd = process.cwd;
+
 const argv = process.argv.slice(2);
 const args = require('minimist')(argv, {
     boolean: [
         'version',
         'help',
-        'dev',
-        'auto',
         'save-exact',
+        'install',
+        'dev',
     ],
-    default: {
-        auto: true
-    },
     alias: {
         v: 'version',
         h: 'help',
-        d: 'dev',
-        a: 'auto',
         E: 'save-exact',
+        i: 'install',
+        D: 'dev',
     },
     unknown: (cmd) => {
         const msg = '\'%s\' is not a nupdate option. See \'nupdate --help\'.';
@@ -35,9 +36,9 @@ if (!args.length && args.help) {
     console.log('v' + require('../package').version);
 } else {
     main(args._[0], {
+        exact: args['save-exact'],
+        install: args.install,
         dev: args.dev,
-        auto: !args.dev && args.auto,
-        saveExact: args['save-exact'],
     });
 }
 
@@ -45,24 +46,59 @@ function main(name, options) {
     if (!name)
         return console.error('Module name could not be empty');
     
-    const nupdate = require('..');
+    const promisify = require('es6-promisify');
+    const currify = require('currify');
     
-    nupdate(name, options, (error, update) => {
-        if (error)
-            return console.error(error.message);
-        
-        update.on('error', (error) => {
-            process.stderr.write(error.message);
-        });
-        
-        update.on('data', (data) => {
-            process.stdout.write(data);
-        });
-        
-        update.on('close', () => {
-            update = null;
-        });
+    const tryExec = promisify(_tryExec);
+    const update = currify(_update);
+    
+    const cmd = `npm info ${name} --json`;
+    
+    tryExec(cmd)
+        .then(JSON.parse)
+        .then(getVersion)
+        .then(update(name, options))
+        .then(save)
+        .catch(onError);
+    
+    if (!options.install)
+        return;
+    
+    tryExec(`npm i ${name}`)
+        .catch(onError);
+}
+
+function _update(name, options, version) {
+    const nupdate = require('..');
+    const info = fs.readFileSync(`${cwd()}/package.json`, 'utf8');
+    
+    const result = nupdate(name, version, info, options);
+    return result;
+}
+
+function _tryExec(cmd, fn) {
+    const tryCatch = require('try-catch');
+    
+    const error = tryCatch(() => {
+        const data = execSync(cmd).toString();
+        fn(null, data);
     });
+    
+    error && fn(error);
+}
+
+function onError(error) {
+    if (error)
+        return console.error(error.message);
+}
+
+function getVersion(info) {
+    return info.version;
+}
+
+function save(data) {
+    const name = `${cwd()}/package.json`;
+    fs.writeFileSync(name, data);
 }
 
 function exit() {

@@ -1,13 +1,9 @@
 # Nupdate [![License][LicenseIMGURL]][LicenseURL] [![NPM version][NPMIMGURL]][NPMURL] [![Dependency Status][DependencyStatusIMGURL]][DependencyStatusURL] [![Build Status][BuildStatusIMGURL]][BuildStatusURL]
 
-Update node modules dependecy and change `package.json` if version is bigger.
+Update node modules dependecy to last version in `package.json`.
 
 For bower you could use [bupdate](https://github.com/coderaiser/bupdate "bupdate").
 Same as:
-
-```sh
-npm r <module> --save && npm i <module> --save
-```
 
 ## Install
 
@@ -24,31 +20,35 @@ nupdate spawnify
 ### Options
 
 ```
--v, --version   - show version number and exit
--h, --help      - show help and exit
--d, --dev       - update development dependencies
--a, --auto      - determine dependencies type and update them
+-v, --version       - show version number and exit
+-h, --help          - show help and exit
+-D, --dev           - update development dependencies
+-E, --save-exact    - save exact version of a dependency
+-i, --install       - install dependency after updating
 ```
 
 ### Use as module
 
+#### nupdate(name, version, info [, options])
+- `name` - name of module
+- `version` - version of a module
+- `info` - stringified content of `package.json`
+- `options`: 
+  - `dev` - update devDependencies
+  - `exact` - update to exact version
+
 ```js
+const fs = require('fs');
 const nupdate = require('nupdate');
-const update  = nupdate('spawnify', {
-    dev: false // default
-});
 
-update.on('error', function(error) {
-    process.stderr.write(error);
-});
-
-update.on('data', function(data) {
-    process.stdout.write(data);
-});
-
-update.on('close', function() {
-    console.log('done');
-});
+const info = fs.readFileSync('package.json', 'utf8');
+nupdate('eslint', '4.0.0', info);
+// returns
+{
+    "devDendencies": {
+        "eslint": "4.0.0"
+    }
+}
 ```
 
 ## License
