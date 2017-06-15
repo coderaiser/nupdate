@@ -51,11 +51,14 @@ function main(name, options) {
     
     const promisify = require('es6-promisify');
     const currify = require('currify');
+    const wraptile = require('wraptile');
     const fullstore = require('fullstore');
     const version = fullstore();
     
     const tryExec = promisify(_tryExec);
     const update = currify(_update);
+    const ifInstall = wraptile(_ifInstall);
+    const ifCommit = wraptile(_ifCommit);
     
     const cmd = `npm info ${name} --json`;
     
@@ -65,17 +68,25 @@ function main(name, options) {
         .then(version)
         .then(update(name, options))
         .then(save)
+        .then(ifInstall(options.install))
+        .then(ifCommit(options.commit))
         .catch(onError);
+}
+
+function _ifInstall(is) {
+    if (!is)
+        return;
+     
+    return tryExec(`npm i ${name}`)
+        .then(console.log)
+}
+
+function ifCommit(is) {
+    if (!is)
+        return;
     
-    if (options.install)
-        tryExec(`npm i ${name}`)
-            .then(console.log)
-            .catch(onError);
-    
-    if (options.commit)
-        tryExec(`git commit -am 'feature(package) ${name} v${version()}'`)
-            .then(console.log)
-            .catch(onError);
+    return tryExec(`git commit -am "feature(package) ${name} v${version()}"`)
+        .then(console.log)
 }
 
 function _update(name, options, version) {
