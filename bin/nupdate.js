@@ -14,6 +14,7 @@ const args = require('minimist')(argv, {
         'save-exact',
         'install',
         'dev',
+        'commit',
     ],
     alias: {
         v: 'version',
@@ -21,6 +22,7 @@ const args = require('minimist')(argv, {
         E: 'save-exact',
         i: 'install',
         D: 'dev',
+        c: 'commit'
     },
     unknown: (cmd) => {
         const msg = '\'%s\' is not a nupdate option. See \'nupdate --help\'.';
@@ -58,7 +60,6 @@ function main(name, options) {
         .then(JSON.parse)
         .then(getVersion)
         .then(update(name, options))
-        .then(rmLastNewLine)
         .then(save)
         .catch(onError);
     
@@ -67,10 +68,6 @@ function main(name, options) {
     
     tryExec(`npm i ${name}`)
         .catch(onError);
-}
-
-function rmLastNewLine(str) {
-    return str.slice(0, -1);
 }
 
 function _update(name, options, version) {
