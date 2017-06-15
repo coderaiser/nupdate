@@ -50,6 +50,8 @@ function main(name, options) {
     
     const promisify = require('es6-promisify');
     const currify = require('currify');
+    const fullstore = require('fullstore');
+    const version = fullstore();
     
     const tryExec = promisify(_tryExec);
     const update = currify(_update);
@@ -59,15 +61,20 @@ function main(name, options) {
     tryExec(cmd)
         .then(JSON.parse)
         .then(getVersion)
+        .then(version)
         .then(update(name, options))
         .then(save)
         .catch(onError);
     
-    if (!options.install)
-        return;
+    if (options.install)
+        tryExec(`npm i ${name}`)
+            .then(console.log)
+            .catch(onError);
     
-    tryExec(`npm i ${name}`)
-        .catch(onError);
+    if (options.commit)
+        tryExec(`git commit -am 'feature(package) ${name} v${version()}'`)
+            .then(console.log)
+            .catch(onError);
 }
 
 function _update(name, options, version) {
