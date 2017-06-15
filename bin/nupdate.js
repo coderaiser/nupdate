@@ -85,7 +85,12 @@ function ifCommit(is) {
     if (!is)
         return;
     
-    return tryExec(`git commit -am "feature(package) ${name} v${version()}"`)
+    const cmd = [
+        `git add package.json`,
+        `git commit -m "feature(package) ${name} v${version()}"`,
+    ].join('&&');
+    
+    return tryExec(cmd)
         .then(console.log)
 }
 
