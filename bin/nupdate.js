@@ -58,7 +58,7 @@ function main(name, options) {
         .then(JSON.parse)
         .then(getVersion)
         .then(update(name, options))
-        .then(rmlastNewLine)
+        .then(rmLastNewLine)
         .then(save)
         .catch(onError);
     
