@@ -91,14 +91,15 @@ function _ifCommit(is, name, version) {
     if (!is)
         return;
     
-    const cmd = [
+    const commit = [
         `git add package.json`,
         `git commit -m "feature(package) ${name} v${version()}"`,
     ].join('&&');
     
     const nothingToCommit = 'echo "Nothing to commit"';
+    const cmd = `${commit} || ${nothingToCommit}`;
     
-    return tryExec(cmd || nothingToCommit)
+    return tryExec(cmd)
         .then(write)
 }
 
