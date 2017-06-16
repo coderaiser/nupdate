@@ -1,3 +1,9 @@
+2017.06.16, v5.2.1
+
+fix:
+- (nupdate) commit or nothingToCommit
+
+
 2017.06.16, v5.2.0
 
 feature:
