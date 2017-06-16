@@ -96,8 +96,7 @@ function _ifCommit(is, name, version) {
         `git commit -m "feature(package) ${name} v${version()}"`,
     ].join('&&');
     
-    const nothingToCommit = 'echo "Nothing to commit"';
-    const cmd = `${commit} || ${nothingToCommit}`;
+    const cmd = `${commit} || true`;
     
     return tryExec(cmd)
         .then(write)
