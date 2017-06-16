@@ -64,14 +64,16 @@ test('update devDependencies: exact', (t) => {
     t.end();
 });
 
-test('update no dependencies, no devDependencies', (t) => {
+test('add: update no dependencies, no devDependencies', (t) => {
     const info = stringify({
         someDependencies: {
             rendy: '^4.1.0'
         }
     });
     
-    const result = nupdate('rendy', '4.2.0', info);
+    const result = nupdate('rendy', '4.2.0', info, {
+        add: true
+    });
     
     const expected = stringify({
         someDependencies: {
@@ -86,7 +88,45 @@ test('update no dependencies, no devDependencies', (t) => {
     t.end();
 });
 
-test('update devDendencies when only dependencies present', (t) => {
+test('add, dev: update no dependencies, no devDependencies', (t) => {
+    const info = stringify({
+        someDependencies: {
+            rendy: '^4.1.0'
+        }
+    });
+    
+    const result = nupdate('rendy', '4.2.0', info, {
+        add: true,
+        dev: true,
+    });
+    
+    const expected = stringify({
+        someDependencies: {
+            rendy: '^4.1.0'
+        },
+        devDependencies: {
+            rendy: '^4.2.0'
+        }
+    });
+    
+    t.deepEqual(result, expected, 'should return input data');
+    t.end();
+});
+
+test('not update when no dependencies, no devDependencies', (t) => {
+    const info = stringify({
+        someDependencies: {
+            rendy: '^4.1.0'
+        }
+    });
+    
+    const result = nupdate('rendy', '4.2.0', info);
+    
+    t.deepEqual(result, info, 'should return input data');
+    t.end();
+});
+
+test('update dendencies when dev flag set', (t) => {
     const info = stringify({
         dependencies: {
             rendy: '^4.1.0'
@@ -99,14 +139,11 @@ test('update devDendencies when only dependencies present', (t) => {
     
     const expected = stringify({
         dependencies: {
-            rendy: '^4.1.0'
-        },
-        devDependencies: {
             rendy: '^4.2.0'
-        },
+        }
     });
     
-    t.deepEqual(result, expected, 'should return input data');
+    t.deepEqual(result, expected, 'should update dependency');
     t.end();
 });
 

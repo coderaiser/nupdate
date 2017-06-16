@@ -26,6 +26,7 @@ nupdate spawnify
 -E, --save-exact    - save exact version of a dependency
 -i, --install       - install dependency after updating
 -c, --commit        - create commit with updated dependency
+-a, --add           - add absent dependency
 ```
 
 ### Use as module

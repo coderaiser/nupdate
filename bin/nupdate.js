@@ -26,6 +26,7 @@ const args = require('minimist')(argv, {
         'install',
         'dev',
         'commit',
+        'add',
     ],
     alias: {
         v: 'version',
@@ -33,6 +34,7 @@ const args = require('minimist')(argv, {
         E: 'save-exact',
         i: 'install',
         D: 'dev',
+        a: 'add',
         c: 'commit'
     },
     unknown: (cmd) => {
@@ -53,6 +55,7 @@ if (!args.length && args.help) {
         install: args.install,
         dev: args.dev,
         commit: args.commit,
+        add: args.add,
     });
 }
 
