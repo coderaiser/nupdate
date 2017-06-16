@@ -1,3 +1,10 @@
+2017.06.16, v5.2.0
+
+feature:
+- (nupdate) show message when nothing to commit
+- (nupdate) --add
+
+
 2017.06.15, v5.1.9
 
 fix:
