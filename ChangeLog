@@ -1,3 +1,9 @@
+2017.06.21, v5.3.0
+
+feature:
+- (nupdate) add ability to search package.json
+
+
 2017.06.16, v5.2.2
 
 fix:
