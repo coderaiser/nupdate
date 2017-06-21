@@ -5,15 +5,15 @@
 const fs = require('fs');
 const execSync = require('child_process').execSync;
 const promisify = require('es6-promisify');
-const currify = require('currify');
 const wraptile = require('wraptile');
+const currify = require('currify');
 
 const tryExec = promisify(_tryExec);
-const update = currify(_update);
+const update = wraptile(_update);
 const ifInstall = wraptile(_ifInstall);
 const ifCommit = wraptile(_ifCommit);
+const save = currify(_save);
 
-const cwd = process.cwd;
 const stdout = process.stdout;
 const write = stdout.write.bind(stdout);
 
@@ -64,18 +64,21 @@ function main(name, options) {
         return console.error('Module name could not be empty');
     
     const fullstore = require('fullstore');
-    const version = fullstore();
+    const versionStore = fullstore();
+    const pathStore = fullstore();
     
     const cmd = `npm info ${name} --json`;
     
     tryExec(cmd)
         .then(JSON.parse)
         .then(getVersion)
-        .then(version)
-        .then(update(name, options))
-        .then(save)
+        .then(versionStore)
+        .then(find)
+        .then(pathStore)
+        .then(update(name, options, pathStore, versionStore))
+        .then(save(pathStore))
         .then(ifInstall(options.install, name))
-        .then(ifCommit(options.commit, name, version))
+        .then(ifCommit(options.commit, name, versionStore))
         .catch(onError);
 }
 
@@ -102,11 +105,16 @@ function _ifCommit(is, name, version) {
         .then(write)
 }
 
-function _update(name, options, version) {
+function find() {
+    const findUp = require('find-up');
+    return findUp('package.json');
+}
+
+function _update(name, options, path, version) {
     const nupdate = require('..');
-    const info = fs.readFileSync(`${cwd()}/package.json`, 'utf8');
+    const info = fs.readFileSync(path(), 'utf8');
+    const result = nupdate(name, version(), info, options);
     
-    const result = nupdate(name, version, info, options);
     return result;
 }
 
@@ -130,9 +138,8 @@ function getVersion(info) {
     return info.version;
 }
 
-function save(data) {
-    const name = `${cwd()}/package.json`;
-    fs.writeFileSync(name, data);
+function _save(pathStore, data) {
+    fs.writeFileSync(pathStore(), data);
 }
 
 function exit() {
