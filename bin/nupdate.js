@@ -78,7 +78,7 @@ function main(name, options) {
         .then(update(name, options, pathStore, versionStore))
         .then(save(pathStore))
         .then(ifInstall(options.install, name))
-        .then(ifCommit(options.commit, name, versionStore))
+        .then(ifCommit(options.commit, name, pathStore, versionStore))
         .catch(onError);
 }
 
@@ -90,12 +90,12 @@ function _ifInstall(is, name) {
         .then(write)
 }
 
-function _ifCommit(is, name, version) {
+function _ifCommit(is, name, path, version) {
     if (!is)
         return;
     
     const commit = [
-        `git add package.json`,
+        `git add ${path()}`,
         `git commit -m "feature(package) ${name} v${version()}"`,
     ].join('&&');
     
