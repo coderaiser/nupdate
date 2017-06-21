@@ -1,3 +1,9 @@
+2017.06.21, v5.3.1
+
+fix:
+- (nupdate) git add: support of find
+
+
 2017.06.21, v5.3.0
 
 feature:
