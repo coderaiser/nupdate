@@ -85,8 +85,8 @@ function main(name, options) {
 function _ifInstall(is, name) {
     if (!is)
         return;
-     
-    return tryExec(`npm i ${name}`)
+    
+    return tryExec(`npm i ${name} --no-save`)
         .then(write)
 }
 
