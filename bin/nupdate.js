@@ -7,6 +7,7 @@ const execSync = require('child_process').execSync;
 const promisify = require('es6-promisify');
 const wraptile = require('wraptile');
 const currify = require('currify');
+const eof = require('../lib/eof');
 
 const tryExec = promisify(_tryExec);
 const update = wraptile(_update);
@@ -76,6 +77,7 @@ function main(name, options) {
         .then(find)
         .then(pathStore)
         .then(update(name, options, pathStore, versionStore))
+        .then(eof)
         .then(save(pathStore))
         .then(ifInstall(options.install, name))
         .then(ifCommit(options.commit, name, pathStore, versionStore))
