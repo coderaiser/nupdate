@@ -5,8 +5,8 @@
 const fs = require('fs');
 const execSync = require('child_process').execSync;
 const promisify = require('es6-promisify');
-const wraptile = require('wraptile');
-const currify = require('currify');
+const wraptile = require('wraptile/legacy');
+const currify = require('currify/legacy');
 const eof = require('../lib/eof');
 
 const tryExec = promisify(_tryExec);
