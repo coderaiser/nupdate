@@ -1,3 +1,13 @@
+2017.07.13, v5.3.3
+
+fix:
+- (nupdate) currify -> currify/legacy
+- (nupdate) eof
+
+feature:
+- (package) add eslint-plugin-node
+
+
 2017.06.26, v5.3.2
 
 fix:
