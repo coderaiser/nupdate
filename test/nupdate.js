@@ -147,3 +147,21 @@ test('update dendencies when dev flag set', (t) => {
     t.end();
 });
 
+test('update dependencies: with dot', (t) => {
+    const info = stringify({
+        dependencies: {
+            'socket.io': '^4.1.0'
+        }
+    });
+    
+    const result = nupdate('socket.io', '4.2.0', info);
+    const expected = stringify({
+        dependencies: {
+            'socket.io': '^4.2.0'
+        }
+    });
+    
+    t.deepEqual(result, expected, 'should update version in dependencies');
+    t.end();
+});
+
