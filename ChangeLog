@@ -1,3 +1,9 @@
+2017.07.25, v5.3.5
+
+fix:
+- (nupdate) --help: rm quote
+
+
 2017.07.14, v5.3.4
 
 fix:
