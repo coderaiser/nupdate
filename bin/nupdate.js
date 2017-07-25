@@ -158,7 +158,7 @@ function help() {
     
     Object.keys(bin)
         .map((name) => {
-            return `  '${name} ${bin[name]}`;
+            return `  ${name} ${bin[name]}`;
         })
         .forEach((line) => {
             console.log(line);
