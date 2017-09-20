@@ -27,7 +27,8 @@
     "minimist": "^1.2.0",
     "nessy": "^2.1.0",
     "try-catch": "^1.0.0",
-    "wraptile": "^1.0.0"
+    "wraptile": "^1.0.0",
+    "sorted-object": "^2.0.1"
   },
   "devDependencies": {
     "coveralls": "^2.13.1",

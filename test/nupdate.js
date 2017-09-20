@@ -165,3 +165,22 @@ test('update dependencies: with dot', (t) => {
     t.end();
 });
 
+test('update dependencies: sort', (t) => {
+    const info = stringify({
+        dependencies: {
+            rendy: '^4.1.0',
+            express: '^5.0.0',
+        }
+    });
+    
+    const result = nupdate('rendy', '4.2.0', info);
+    const expected = stringify({
+        dependencies: {
+            express: '^5.0.0',
+            rendy: '^4.2.0',
+        }
+    });
+    
+    t.deepEqual(result, expected, 'should sort dependencies');
+    t.end();
+});
