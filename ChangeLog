@@ -1,3 +1,9 @@
+2017.09.20, v5.4.0
+
+feature:
+- (nupdate) add ability to sort dependencies like npm does
+
+
 2017.07.25, v5.3.5
 
 fix:
