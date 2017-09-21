@@ -27,6 +27,7 @@ nupdate spawnify
 -i, --install       - install dependency after updating
 -c, --commit        - create commit with updated dependency
 -a, --add           - add absent dependency
+-r, --remove        - remove dependency
 ```
 
 ### Use as module
@@ -38,6 +39,8 @@ nupdate spawnify
 - `options`: 
   - `dev` - update devDependencies
   - `exact` - update to exact version
+  - `add` - add absent dependency
+  - `remove` - remove dependency
 
 ```js
 const fs = require('fs');

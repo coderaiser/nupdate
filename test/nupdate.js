@@ -184,3 +184,26 @@ test('update dependencies: sort', (t) => {
     t.deepEqual(result, expected, 'should sort dependencies');
     t.end();
 });
+
+test('update dependencies: remove', (t) => {
+    const info = stringify({
+        dependencies: {
+            'socket.io': '^4.2.0',
+            express: '^5.0.0',
+        }
+    });
+    
+    const result = nupdate('socket.io', '4.2.0', info, {
+        remove: true
+    });
+    
+    const expected = stringify({
+        dependencies: {
+            express: '^5.0.0',
+        }
+    });
+    
+    t.deepEqual(result, expected, 'should sort dependencies');
+    t.end();
+});
+
