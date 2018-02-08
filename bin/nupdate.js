@@ -126,12 +126,14 @@ function _update(name, options, path, version) {
 function _tryExec(cmd, fn) {
     const tryCatch = require('try-catch');
     
-    const error = tryCatch(() => {
-        const data = execSync(cmd).toString();
-        fn(null, data);
+    const result = tryCatch(() => {
+        return execSync(cmd).toString();
     });
     
-    error && fn(error);
+    const error = result[0];
+    const data = result[1];
+    
+    fn(error, data);
 }
 
 function onError(error) {
