@@ -37,7 +37,7 @@
     "eslint-plugin-node": "^6.0.0",
     "nodemon": "^1.11.0",
     "nyc": "^11.0.2",
-    "redrun": "^5.9.15",
+    "redrun": "^6.0.0",
     "tape": "^4.6.3"
   },
   "engines": {
