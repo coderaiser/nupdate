@@ -156,17 +156,14 @@ function exit() {
 
 function help() {
     const bin = require('../json/help');
+    const forEachKey = require('for-each-key');
     const usage = 'Usage: nupdate [options]';
+    
+    const log = currify((a, b, c) => console.log(a, b, c);
     
     console.log(usage);
     console.log('Options:');
     
-    Object.keys(bin)
-        .map((name) => {
-            return `  ${name} ${bin[name]}`;
-        })
-        .forEach((line) => {
-            console.log(line);
-        });
+    forEachKey(log(' %s %s'), bin);
 }
 

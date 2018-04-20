@@ -22,6 +22,7 @@
     "es6-promisify": "^6.0.0",
     "find-up": "^2.1.0",
     "finicky": "^1.0.0",
+    "for-each-key": "^1.0.1",
     "fullstore": "^1.0.0",
     "jessy": "^2.0.1",
     "jonny": "^2.0.3",
