@@ -159,7 +159,7 @@ function help() {
     const forEachKey = require('for-each-key');
     const usage = 'Usage: nupdate [options]';
     
-    const log = currify((a, b, c) => console.log(a, b, c);
+    const log = currify((a, b, c) => console.log(a, b, c));
     
     console.log(usage);
     console.log('Options:');
