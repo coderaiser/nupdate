@@ -1,3 +1,12 @@
+2018.07.18, v6.0.0
+
+feature:
+- (package) drop support of node < 6
+- (package) eslint-plugin-node v7.0.1
+- (package) eslint v5.1.0
+- (package) find-up v3.0.0
+
+
 2018.05.03, v5.5.6
 
 feature:
