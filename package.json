@@ -20,7 +20,7 @@
     "currify": "^2.0.4",
     "detect-indent": "^5.0.0",
     "es6-promisify": "^6.0.0",
-    "find-up": "^2.1.0",
+    "find-up": "^3.0.0",
     "finicky": "^1.0.0",
     "for-each-key": "^1.0.1",
     "fullstore": "^1.0.0",
