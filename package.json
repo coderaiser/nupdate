@@ -19,7 +19,6 @@
   "dependencies": {
     "currify": "^3.0.0",
     "detect-indent": "^5.0.0",
-    "es6-promisify": "^6.0.0",
     "find-up": "^3.0.0",
     "finicky": "^1.0.0",
     "for-each-key": "^1.0.1",
@@ -42,7 +41,7 @@
     "tape": "^4.6.3"
   },
   "engines": {
-    "node": ">=6"
+    "node": ">=8"
   },
   "repository": {
     "type": "git",

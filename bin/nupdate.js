@@ -3,13 +3,11 @@
 'use strict';
 
 const fs = require('fs');
-const execSync = require('child_process').execSync;
-const promisify = require('es6-promisify').promisify;
-const wraptile = require('wraptile/legacy');
-const currify = require('currify/legacy');
+const {execSync} = require('child_process');
+const wraptile = require('wraptile');
+const currify = require('currify');
 const eof = require('../lib/eof');
 
-const tryExec = promisify(_tryExec);
 const update = wraptile(_update);
 const ifInstall = wraptile(_ifInstall);
 const ifCommit = wraptile(_ifCommit);
@@ -123,17 +121,8 @@ function _update(name, options, path, version) {
     return result;
 }
 
-function _tryExec(cmd, fn) {
-    const tryCatch = require('try-catch');
-    
-    const result = tryCatch(() => {
-        return execSync(cmd).toString();
-    });
-    
-    const error = result[0];
-    const data = result[1];
-    
-    fn(error, data);
+async function tryExec(cmd) {
+    return execSync(cmd).toString();
 }
 
 function onError(error) {
@@ -149,8 +138,8 @@ function _save(pathStore, data) {
     fs.writeFileSync(pathStore(), data);
 }
 
-function exit() {
-    console.error.apply(console, arguments);
+function exit(...args) {
+    console.error.apply(console, args);
     process.exit(1);
 }
 
