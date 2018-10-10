@@ -1,3 +1,13 @@
+2018.10.10, v7.0.0
+
+feature:
+- (nupdate) drop support of node < 8
+- (package) nyc v13.0.1
+- (package) currify v3.0.0
+- (package) redrun v7.0.0
+- (package) nyc v12.0.2
+
+
 2018.07.18, v6.0.0
 
 feature:
