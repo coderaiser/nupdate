@@ -28,6 +28,8 @@ nupdate spawnify
 -c, --commit        - create commit with updated dependency
 -a, --add           - add absent dependency
 -r, --remove        - remove dependency
+--public            - set publichConfig access='public'
+--restricted        - set publichConfig access='restricted'
 ```
 
 ### Use as module

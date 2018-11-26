@@ -27,6 +27,8 @@ const args = require('minimist')(argv, {
         'commit',
         'add',
         'remove',
+        'public',
+        'restricted',
     ],
     alias: {
         v: 'version',
@@ -50,6 +52,11 @@ if (!args.length && args.help) {
     help();
 } else if (args.version) {
     console.log('v' + require('../package').version);
+} else if (args.public || args.restricted) {
+    updatePublishConfig({
+        isPublic: args.public,
+        isCommit: args.commit,
+    }).catch(onError);
 } else {
     main(args._[0], {
         exact: args['save-exact'],
@@ -58,7 +65,41 @@ if (!args.length && args.help) {
         commit: args.commit,
         add: args.add,
         remove: args.remove,
+    }).catch(onError);
+}
+
+function getAccess({isPublic}) {
+    if (isPublic)
+        return 'public';
+    
+    return 'restricted';
+}
+
+async function updatePublishConfig({isPublic, isCommit}) {
+    const publishConfig = require('../lib/publish-config');
+    
+    const access = getAccess({
+        isPublic,
     });
+    
+    const path = await find();
+    const data = fs.readFileSync(path, 'utf8');
+    const result = publishConfig(access, data);
+    
+    fs.writeFileSync(path, eof(result));
+    
+    if (!isCommit)
+        return;
+    
+    const commit = [
+        `git add ${path}`,
+        `git commit -m "chore(package) publishConfig: access: ${access}"`,
+    ].join('&&');
+    
+    const cmd = `${commit} || true`;
+    const str = await tryExec(cmd);
+    
+    write(str);
 }
 
 function main(name, options) {
@@ -114,6 +155,9 @@ function find() {
 }
 
 function _update(name, options, path, version) {
+    if (!name)
+        return;
+    
     const nupdate = require('..');
     const info = fs.readFileSync(path(), 'utf8');
     const result = nupdate(name, version(), info, options);
