@@ -102,7 +102,7 @@ async function updatePublishConfig({isPublic, isCommit}) {
     write(str);
 }
 
-function main(name, options) {
+async function main(name, options) {
     if (!name)
         return console.error('Module name could not be empty');
     
@@ -112,7 +112,7 @@ function main(name, options) {
     
     const cmd = `npm info ${name} --json`;
     
-    tryExec(cmd)
+    return tryExec(cmd)
         .then(JSON.parse)
         .then(getVersion)
         .then(versionStore)
@@ -123,7 +123,6 @@ function main(name, options) {
         .then(save(pathStore))
         .then(ifInstall(options.install, name))
         .then(ifCommit(options.commit, name, pathStore, versionStore))
-        .catch(onError);
 }
 
 function _ifInstall(is, name) {
