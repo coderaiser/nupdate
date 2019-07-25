@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "currify": "^3.0.0",
-    "detect-indent": "^5.0.0",
+    "detect-indent": "^6.0.0",
     "find-up": "^4.1.0",
     "finicky": "^1.0.0",
     "for-each-key": "^1.0.1",
