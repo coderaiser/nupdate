@@ -13,7 +13,7 @@ const ifInstall = wraptile(_ifInstall);
 const ifCommit = wraptile(_ifCommit);
 const save = currify(_save);
 
-const stdout = process.stdout;
+const {stdout} = process;
 const write = stdout.write.bind(stdout);
 
 const argv = process.argv.slice(2);
@@ -38,14 +38,14 @@ const args = require('minimist')(argv, {
         D: 'dev',
         a: 'add',
         r: 'remove',
-        c: 'commit'
+        c: 'commit',
     },
     unknown: (cmd) => {
         const msg = '\'%s\' is not a nupdate option. See \'nupdate --help\'.';
         
         if (/^--?/.test(cmd))
             exit(msg, cmd);
-    }
+    },
 });
 
 if (!args.length && args.help) {
@@ -122,7 +122,7 @@ async function main(name, options) {
         .then(eof)
         .then(save(pathStore))
         .then(ifInstall(options.install, name))
-        .then(ifCommit(options.commit, name, pathStore, versionStore))
+        .then(ifCommit(options.commit, name, pathStore, versionStore));
 }
 
 function _ifInstall(is, name) {
@@ -130,7 +130,7 @@ function _ifInstall(is, name) {
         return;
     
     return tryExec(`npm i ${name} --no-save`)
-        .then(write)
+        .then(write);
 }
 
 function _ifCommit(is, name, path, version) {
@@ -145,7 +145,7 @@ function _ifCommit(is, name, path, version) {
     const cmd = `${commit} || true`;
     
     return tryExec(cmd)
-        .then(write)
+        .then(write);
 }
 
 function find() {
@@ -182,7 +182,7 @@ function _save(pathStore, data) {
 }
 
 function exit(...args) {
-    console.error.apply(console, args);
+    console.error(...args);
     process.exit(1);
 }
 

@@ -1,6 +1,6 @@
 'use strict';
 
-const test = require('tape');
+const test = require('supertape');
 const nupdate = require('..');
 
 const stringify = (obj) => {
@@ -10,15 +10,15 @@ const stringify = (obj) => {
 test('update dependencies', (t) => {
     const info = stringify({
         dependencies: {
-            rendy: '^4.1.0'
-        }
+            rendy: '^4.1.0',
+        },
     });
     
     const result = nupdate('rendy', '4.2.0', info);
     const expected = stringify({
         dependencies: {
-            rendy: '^4.2.0'
-        }
+            rendy: '^4.2.0',
+        },
     });
     
     t.deepEqual(result, expected, 'should update version in dependencies');
@@ -28,15 +28,15 @@ test('update dependencies', (t) => {
 test('update devDependencies', (t) => {
     const info = stringify({
         devDependencies: {
-            rendy: '^4.1.0'
-        }
+            rendy: '^4.1.0',
+        },
     });
     
     const result = nupdate('rendy', '4.2.0', info);
     const expected = stringify({
         devDependencies: {
-            rendy: '^4.2.0'
-        }
+            rendy: '^4.2.0',
+        },
     });
     
     t.deepEqual(result, expected, 'should update version in devDependencies');
@@ -46,18 +46,18 @@ test('update devDependencies', (t) => {
 test('update devDependencies: exact', (t) => {
     const info = stringify({
         devDependencies: {
-            rendy: '^4.1.0'
-        }
+            rendy: '^4.1.0',
+        },
     });
     
     const result = nupdate('rendy', '4.2.0', info, {
-        exact: true
+        exact: true,
     });
     
     const expected = stringify({
         devDependencies: {
-            rendy: '4.2.0'
-        }
+            rendy: '4.2.0',
+        },
     });
     
     t.deepEqual(result, expected, 'should update version in devDependencies');
@@ -67,21 +67,21 @@ test('update devDependencies: exact', (t) => {
 test('add: update no dependencies, no devDependencies', (t) => {
     const info = stringify({
         someDependencies: {
-            rendy: '^4.1.0'
-        }
+            rendy: '^4.1.0',
+        },
     });
     
     const result = nupdate('rendy', '4.2.0', info, {
-        add: true
+        add: true,
     });
     
     const expected = stringify({
         someDependencies: {
-            rendy: '^4.1.0'
+            rendy: '^4.1.0',
         },
         dependencies: {
-            rendy: '^4.2.0'
-        }
+            rendy: '^4.2.0',
+        },
     });
     
     t.deepEqual(result, expected, 'should return input data');
@@ -91,8 +91,8 @@ test('add: update no dependencies, no devDependencies', (t) => {
 test('add, dev: update no dependencies, no devDependencies', (t) => {
     const info = stringify({
         someDependencies: {
-            rendy: '^4.1.0'
-        }
+            rendy: '^4.1.0',
+        },
     });
     
     const result = nupdate('rendy', '4.2.0', info, {
@@ -102,11 +102,11 @@ test('add, dev: update no dependencies, no devDependencies', (t) => {
     
     const expected = stringify({
         someDependencies: {
-            rendy: '^4.1.0'
+            rendy: '^4.1.0',
         },
         devDependencies: {
-            rendy: '^4.2.0'
-        }
+            rendy: '^4.2.0',
+        },
     });
     
     t.deepEqual(result, expected, 'should return input data');
@@ -116,8 +116,8 @@ test('add, dev: update no dependencies, no devDependencies', (t) => {
 test('not update when no dependencies, no devDependencies', (t) => {
     const info = stringify({
         someDependencies: {
-            rendy: '^4.1.0'
-        }
+            rendy: '^4.1.0',
+        },
     });
     
     const result = nupdate('rendy', '4.2.0', info);
@@ -129,18 +129,18 @@ test('not update when no dependencies, no devDependencies', (t) => {
 test('update dendencies when dev flag set', (t) => {
     const info = stringify({
         dependencies: {
-            rendy: '^4.1.0'
-        }
+            rendy: '^4.1.0',
+        },
     });
     
     const result = nupdate('rendy', '4.2.0', info, {
-        dev: true
+        dev: true,
     });
     
     const expected = stringify({
         dependencies: {
-            rendy: '^4.2.0'
-        }
+            rendy: '^4.2.0',
+        },
     });
     
     t.deepEqual(result, expected, 'should update dependency');
@@ -150,15 +150,15 @@ test('update dendencies when dev flag set', (t) => {
 test('update dependencies: with dot', (t) => {
     const info = stringify({
         dependencies: {
-            'socket.io': '^4.1.0'
-        }
+            'socket.io': '^4.1.0',
+        },
     });
     
     const result = nupdate('socket.io', '4.2.0', info);
     const expected = stringify({
         dependencies: {
-            'socket.io': '^4.2.0'
-        }
+            'socket.io': '^4.2.0',
+        },
     });
     
     t.deepEqual(result, expected, 'should update version in dependencies');
@@ -170,7 +170,7 @@ test('update dependencies: sort', (t) => {
         dependencies: {
             rendy: '^4.1.0',
             express: '^5.0.0',
-        }
+        },
     });
     
     const result = nupdate('rendy', '4.2.0', info);
@@ -178,7 +178,7 @@ test('update dependencies: sort', (t) => {
         dependencies: {
             express: '^5.0.0',
             rendy: '^4.2.0',
-        }
+        },
     });
     
     t.deepEqual(result, expected, 'should sort dependencies');
@@ -189,18 +189,18 @@ test('update dependencies: remove', (t) => {
     const info = stringify({
         dependencies: {
             'socket.io': '^4.2.0',
-            express: '^5.0.0',
-        }
+            'express': '^5.0.0',
+        },
     });
     
     const result = nupdate('socket.io', '4.2.0', info, {
-        remove: true
+        remove: true,
     });
     
     const expected = stringify({
         dependencies: {
             express: '^5.0.0',
-        }
+        },
     });
     
     t.deepEqual(result, expected, 'should sort dependencies');

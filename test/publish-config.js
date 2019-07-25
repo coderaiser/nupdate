@@ -1,18 +1,16 @@
 'use strict';
 
-const test = require('tape');
+const test = require('supertape');
 const publishConfig = require('../lib/publish-config');
 
-const {
-    stringify,
-} = JSON;
+const {stringify} = JSON;
 
 test('publish-config: public', (t) => {
     const result = publishConfig('public', stringify({}));
     const expected = stringify({
         publishConfig: {
             access: 'public',
-        }
+        },
     });
     
     t.equal(result, expected, 'should equal');
@@ -24,7 +22,7 @@ test('publish-config: private', (t) => {
     const expected = stringify({
         publishConfig: {
             access: 'private',
-        }
+        },
     });
     
     t.equal(result, expected, 'should equal');

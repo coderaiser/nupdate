@@ -7,14 +7,14 @@
     "nupdate": "bin/nupdate.js"
   },
   "scripts": {
-    "lint": "redrun lint:*",
-    "lint:eslint": "eslint lib test",
-    "lint:eslint:bin": "eslint --rule 'no-console:0' bin",
-    "test": "tape test/*.js",
-    "coverage": "nyc npm test",
-    "report": "nyc report --reporter=text-lcov | coveralls",
-    "watcher": "nodemon -w test -w lib --exec",
-    "watch:test": "npm run watcher -- npm test"
+    "lint": "madrun lint",
+    "fix:lint": "madrun fix:lint",
+    "lint:eslint:bin": "madrun lint:eslint:bin",
+    "test": "madrun test",
+    "coverage": "madrun coverage",
+    "report": "madrun report",
+    "watcher": "madrun watcher",
+    "watch:test": "madrun watch:test"
   },
   "dependencies": {
     "currify": "^3.0.0",
@@ -35,10 +35,12 @@
     "coveralls": "^3.0.0",
     "eslint": "^6.1.0",
     "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-putout": "^1.9.1",
+    "madrun": "^2.3.1",
     "nodemon": "^1.11.0",
     "nyc": "^14.1.1",
     "redrun": "^7.0.0",
-    "tape": "^4.6.3"
+    "supertape": "^1.2.3"
   },
   "engines": {
     "node": ">=8.3"
