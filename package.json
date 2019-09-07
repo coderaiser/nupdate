@@ -1,6 +1,6 @@
 {
   "name": "nupdate",
-  "version": "7.1.2",
+  "version": "7.1.3",
   "description": "update node module dependency in package.json",
   "main": "lib/nupdate.js",
   "bin": {
@@ -9,9 +9,6 @@
   "scripts": {
     "lint": "madrun lint",
     "fix:lint": "madrun fix:lint",
-    "lint:eslint:bin": "madrun lint:eslint:bin",
-    "test": "madrun test",
-    "coverage": "madrun coverage",
     "report": "madrun report",
     "watcher": "madrun watcher",
     "watch:test": "madrun watch:test"
