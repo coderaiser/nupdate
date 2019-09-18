@@ -4,9 +4,12 @@ const {run} = require('madrun');
 
 module.exports = {
     'lint': () => 'putout bin lib test madrun.js',
-    'fix:lint': () => run('lint', '--fix'),
+    'fix:lint': () => run(['putout', 'lint:*'], '--fix'),
     'report': () => 'nyc report --reporter=text-lcov | coveralls',
-    'watcher': () => 'nodemon -w test -w lib --exec',
+    'coverage': () => 'nyc npm test',
+    'test': () => 'tape test/*.js',
+    'watch:coverage': () => run('watcher', 'npm run coverage'),
     'watch:test': () => run('watcher', 'npm test'),
+    'watcher': () => 'nodemon -w test -w lib --exec',
 };
 

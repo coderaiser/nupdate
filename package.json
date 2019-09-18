@@ -10,8 +10,11 @@
     "lint": "madrun lint",
     "fix:lint": "madrun fix:lint",
     "report": "madrun report",
-    "watcher": "madrun watcher",
-    "watch:test": "madrun watch:test"
+    "coverage": "madrun coverage",
+    "test": "madrun test",
+    "watch:coverage": "madrun watch:coverage",
+    "watch:test": "madrun watch:test",
+    "watcher": "madrun watcher"
   },
   "dependencies": {
     "currify": "^3.0.0",
