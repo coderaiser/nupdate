@@ -3,8 +3,8 @@
 const {run} = require('madrun');
 
 module.exports = {
-    'lint': () => 'putout bin lib test madrun.js',
-    'fix:lint': () => run(['putout', 'lint:*'], '--fix'),
+    'lint': () => 'putout bin lib test .madrun.js',
+    'fix:lint': () => run('lint', '--fix'),
     'report': () => 'nyc report --reporter=text-lcov | coveralls',
     'coverage': () => 'nyc npm test',
     'test': () => 'tape test/*.js',
