@@ -21,7 +21,7 @@
     "detect-indent": "^6.0.0",
     "find-up": "^4.1.0",
     "finicky": "^1.0.0",
-    "for-each-key": "^1.0.1",
+    "for-each-key": "^2.0.0",
     "fullstore": "^2.0.2",
     "jessy": "^3.0.0",
     "jonny": "^3.0.0",
