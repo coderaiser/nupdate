@@ -148,9 +148,9 @@ function _ifCommit(is, name, path, version) {
         .then(write);
 }
 
-function find() {
+async function find() {
     const findUp = require('find-up');
-    return findUp('package.json');
+    return await findUp('package.json');
 }
 
 function _update(name, options, path, version) {
