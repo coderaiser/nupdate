@@ -28,6 +28,7 @@ nupdate spawnify
 -c, --commit        - create commit with updated dependency
 -a, --add           - add absent dependency
 -r, --remove        - remove dependency
+-*, --set-any       - set * as dependency version
 --public            - set publichConfig access='public'
 --restricted        - set publichConfig access='restricted'
 ```
@@ -44,6 +45,7 @@ nupdate spawnify
   - `exact` - update to exact version
   - `add` - add absent dependency
   - `remove` - remove dependency
+  - `set-any` - set `*` as dependency version
 
 ```js
 const fs = require('fs');

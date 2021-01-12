@@ -207,3 +207,23 @@ test('update dependencies: remove', (t) => {
     t.end();
 });
 
+test('nupdate: set-any', (t) => {
+    const info = stringify({
+        dependencies: {
+            rendy: '^4.1.0',
+        },
+    });
+    
+    const result = nupdate('rendy', '4.2.0', info, {
+        setAny: true,
+    });
+    
+    const expected = stringify({
+        dependencies: {
+            rendy: '*',
+        },
+    });
+    
+    t.deepEqual(result, expected, 'should return input data');
+    t.end();
+});

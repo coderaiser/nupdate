@@ -29,16 +29,18 @@ const args = require('minimist')(argv, {
         'remove',
         'public',
         'restricted',
+        'set-any',
     ],
     alias: {
-        v: 'version',
-        h: 'help',
-        E: 'save-exact',
-        i: 'install',
-        D: 'dev',
-        a: 'add',
-        r: 'remove',
-        c: 'commit',
+        'v': 'version',
+        'h': 'help',
+        'E': 'save-exact',
+        'i': 'install',
+        'D': 'dev',
+        'a': 'add',
+        'r': 'remove',
+        'c': 'commit',
+        '*': 'set-any',
     },
     unknown: (cmd) => {
         const msg = '\'%s\' is not a nupdate option. See \'nupdate --help\'.';
@@ -65,6 +67,7 @@ if (!args.length && args.help) {
         commit: args.commit,
         add: args.add,
         remove: args.remove,
+        setAny: args['set-any'],
     }).catch(onError);
 }
 
