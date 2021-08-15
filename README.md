@@ -28,6 +28,8 @@ nupdate eslint@8.0.0-beta.0
 ### Options
 
 ```
+Usage: nupdate [pattern] [options]
+Options:
 -v, --version       - show version number and exit
 -h, --help          - show help and exit
 -D, --dev           - update development dependencies
@@ -43,7 +45,7 @@ nupdate eslint@8.0.0-beta.0
 
 ### Use as module
 
-#### nupdate(name, version, info \[, options])
+#### nupdate(name, version, info [, options])
 
 - `name` - name of module
 - `version` - version of a module
@@ -56,8 +58,8 @@ nupdate eslint@8.0.0-beta.0
   - `set-any` - set `*` as dependency version
 
 ```js
-const fs = require('fs');
-const nupdate = require('nupdate');
+import fs from 'fs';
+import nupdate from 'nupdate';
 
 const info = fs.readFileSync('package.json', 'utf8');
 nupdate('eslint', '4.0.0', info);
@@ -74,17 +76,10 @@ nupdate('eslint', '4.0.0', info);
 MIT
 
 [NPMIMGURL]: https://img.shields.io/npm/v/nupdate.svg?style=flat
-
 [BuildStatusIMGURL]: https://img.shields.io/travis/coderaiser/nupdate/master.svg?style=flat
-
 [DependencyStatusIMGURL]: https://img.shields.io/david/coderaiser/nupdate.svg?style=flat
-
 [LicenseIMGURL]: https://img.shields.io/badge/license-MIT-317BF9.svg?style=flat
-
 [NPMURL]: https://npmjs.org/package/nupdate "npm"
-
 [BuildStatusURL]: https://travis-ci.org/coderaiser/nupdate "Build Status"
-
 [DependencyStatusURL]: https://david-dm.org/coderaiser/nupdate "Dependency Status"
-
 [LicenseURL]: https://tldrlegal.com/license/mit-license "MIT License"

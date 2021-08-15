@@ -1,7 +1,5 @@
-'use strict';
-
-const test = require('supertape');
-const eof = require('../lib/eof');
+import test from 'supertape';
+import eof from '../lib/eof.js';
 
 test('eof: no', (t) => {
     t.equal(eof('hello'), 'hello\n');

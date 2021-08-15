@@ -1,7 +1,5 @@
-'use strict';
-
-const test = require('supertape');
-const publishConfig = require('../lib/publish-config');
+import test from 'supertape';
+import publishConfig from '../lib/publish-config.js';
 
 const {stringify} = JSON;
 

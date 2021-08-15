@@ -4,5 +4,6 @@ npm-debug.log
 package-lock.json
 .nyc_output
 .*.swp
-.putoutcache
 
+yarn-error.log
+coverage

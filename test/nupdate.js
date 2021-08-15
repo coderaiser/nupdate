@@ -1,7 +1,5 @@
-'use strict';
-
-const test = require('supertape');
-const nupdate = require('..');
+import test from 'supertape';
+import nupdate from '../lib/nupdate.js';
 
 const stringify = (obj) => {
     return JSON.stringify(obj, null, 4);
