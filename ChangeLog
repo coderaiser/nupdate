@@ -1,3 +1,16 @@
+2021.08.15, v9.0.0
+
+feature:
+- (nupdate) eslint v8
+- (package) detect-indent v7.0.0
+- (package) eslint-plugin-putout v8.4.0
+- (nupdate) convert to ESM
+- (package) putout v18.14.0
+- (package) supertape v5.6.0
+- (nupdate) add support of patterns
+
+
+
 2021.01.12, v8.0.0
 
 feature:
