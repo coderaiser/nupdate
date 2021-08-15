@@ -120,7 +120,7 @@ async function main(pattern, options) {
     if (!pattern)
         return console.error(`Module pattern could not be empty`);
     
-    const [name, version] = pattern.split('@');
+    const [name, version] = pattern.split(':');
     
     const fullstore = await simport('fullstore');
     const versionStore = fullstore();
