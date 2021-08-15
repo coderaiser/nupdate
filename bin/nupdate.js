@@ -105,6 +105,15 @@ async function updatePublishConfig({isPublic, isCommit}) {
     write(str);
 }
 
+function getCmd(pattern) {
+    const [name, version] = pattern.split('@');
+    
+    if (!version)
+        return `npm info ${name} --json`;
+    
+    return `echo '{"version": "${version}"}'`;
+}
+
 async function main(name, options) {
     if (!name)
         return console.error('Module name could not be empty');
@@ -113,7 +122,7 @@ async function main(name, options) {
     const versionStore = fullstore();
     const pathStore = fullstore();
     
-    const cmd = `npm info ${name} --json`;
+    const cmd = getCmd(name);
     
     return tryExec(cmd)
         .then(JSON.parse)

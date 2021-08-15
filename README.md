@@ -13,8 +13,16 @@ npm i nupdate -g
 
 ## How to use?
 
+Update `spawnify` to latest version:
+
 ```sh
 nupdate spawnify
+```
+
+Update to known version:
+
+```sh
+nupdate eslint@8.0.0-beta.0
 ```
 
 ### Options
