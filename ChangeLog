@@ -1,3 +1,11 @@
+2022.01.14, v9.1.0
+
+feature:
+- (nupdate) get rid of simport
+- (package) eslint-plugin-putout v13.0.1
+- (package) putout v24.1.0
+
+
 2021.08.15, v9.0.0
 
 feature:
