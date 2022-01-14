@@ -1,4 +1,4 @@
-# Nupdate [![License][LicenseIMGURL]][LicenseURL] [![NPM version][NPMIMGURL]][NPMURL] [![Dependency Status][DependencyStatusIMGURL]][DependencyStatusURL] [![Build Status][BuildStatusIMGURL]][BuildStatusURL]
+# Nupdate [![License][LicenseIMGURL]][LicenseURL] [![NPM version][NPMIMGURL]][NPMURL] [![Build Status][BuildStatusIMGURL]][BuildStatusURL]
 
 Update node modules dependecy to last version in `package.json`.
 
@@ -77,9 +77,7 @@ MIT
 
 [NPMIMGURL]: https://img.shields.io/npm/v/nupdate.svg?style=flat
 [BuildStatusIMGURL]: https://img.shields.io/travis/coderaiser/nupdate/master.svg?style=flat
-[DependencyStatusIMGURL]: https://img.shields.io/david/coderaiser/nupdate.svg?style=flat
 [LicenseIMGURL]: https://img.shields.io/badge/license-MIT-317BF9.svg?style=flat
 [NPMURL]: https://npmjs.org/package/nupdate "npm"
 [BuildStatusURL]: https://travis-ci.org/coderaiser/nupdate "Build Status"
-[DependencyStatusURL]: https://david-dm.org/coderaiser/nupdate "Dependency Status"
 [LicenseURL]: https://tldrlegal.com/license/mit-license "MIT License"

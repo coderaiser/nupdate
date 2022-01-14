@@ -1,15 +1,15 @@
 #!/usr/bin/env node
 
+import {createRequire} from 'module';
 import fs from 'fs';
 import {execSync} from 'child_process';
 import wraptile from 'wraptile';
 import currify from 'currify';
 import minimist from 'minimist';
-import {createSimport} from 'simport';
 
 import eof from '../lib/eof.js';
 
-const simport = createSimport(import.meta.url);
+const require = createRequire(import.meta.url);
 
 const update = wraptile(_update);
 const ifInstall = wraptile(_ifInstall);
@@ -47,7 +47,7 @@ const args = minimist(argv, {
         '*': 'set-any',
     },
     unknown: (cmd) => {
-        const msg = '\'%s\' is not a nupdate option. See \'nupdate --help\'.';
+        const msg = `'%s' is not a nupdate option. See 'nupdate --help'.`;
         
         if (/^--?/.test(cmd))
             exit(msg, cmd);
@@ -57,7 +57,7 @@ const args = minimist(argv, {
 if (!args.length && args.help) {
     help();
 } else if (args.version) {
-    console.log('v' + await simport('../package').version);
+    console.log('v' + require('../package').version);
 } else if (args.public || args.restricted) {
     updatePublishConfig({
         isPublic: args.public,
@@ -83,7 +83,7 @@ function getAccess({isPublic}) {
 }
 
 async function updatePublishConfig({isPublic, isCommit}) {
-    const publishConfig = await import('../lib/publish-config');
+    const publishConfig = await import('../lib/publish-config.js');
     
     const access = getAccess({
         isPublic,
@@ -104,7 +104,7 @@ async function updatePublishConfig({isPublic, isCommit}) {
     ].join('&&');
     
     const cmd = `${commit} || true`;
-    const str = await tryExec(cmd);
+    const str = tryExec(cmd);
     
     write(str);
 }
@@ -122,7 +122,7 @@ async function main(pattern, options) {
     
     const [name, version] = pattern.split(':');
     
-    const fullstore = await simport('fullstore');
+    const {default: fullstore} = await import('fullstore');
     const versionStore = fullstore();
     const pathStore = fullstore();
     
@@ -168,7 +168,7 @@ function _ifCommit(is, name, path, version) {
 }
 
 async function find() {
-    const findUp = await simport('find-up');
+    const {findUp} = await import('find-up');
     return await findUp('package.json');
 }
 
@@ -176,14 +176,14 @@ async function _update(name, options, path, version) {
     if (!name)
         return;
     
-    const nupdate = await simport('../lib/nupdate.js');
+    const {nupdate} = await import('../lib/nupdate.js');
     const info = fs.readFileSync(path(), 'utf8');
     const result = nupdate(name, version(), info, options);
     
     return result;
 }
 
-async function tryExec(cmd) {
+function tryExec(cmd) {
     return execSync(cmd).toString();
 }
 
@@ -206,8 +206,8 @@ function exit(...args) {
 }
 
 async function help() {
-    const bin = await simport('../json/help.json');
-    const forEachKey = await simport('for-each-key');
+    const bin = require('../json/help.json');
+    const {defeault: forEachKey} = await import('for-each-key');
     const usage = 'Usage: nupdate [pattern] [options]';
     
     const log = currify((a, b, c) => console.log(a, b, c));

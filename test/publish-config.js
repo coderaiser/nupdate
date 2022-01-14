@@ -11,7 +11,7 @@ test('publish-config: public', (t) => {
         },
     });
     
-    t.equal(result, expected, 'should equal');
+    t.equal(result, expected);
     t.end();
 });
 
@@ -23,6 +23,6 @@ test('publish-config: private', (t) => {
         },
     });
     
-    t.equal(result, expected, 'should equal');
+    t.equal(result, expected);
     t.end();
 });

@@ -28,7 +28,6 @@
     "jonny": "^3.0.0",
     "minimist": "^1.2.0",
     "nessy": "^4.0.0",
-    "simport": "^1.2.0",
     "sorted-object": "^2.0.1",
     "try-catch": "^3.0.0",
     "wraptile": "^3.0.0"
