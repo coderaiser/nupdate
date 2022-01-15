@@ -16,6 +16,7 @@ const ifInstall = wraptile(_ifInstall);
 const ifCommit = wraptile(_ifCommit);
 const save = currify(_save);
 
+const resolve = Promise.resolve.bind(Promise);
 const {stdout} = process;
 const write = stdout.write.bind(stdout);
 
@@ -131,7 +132,7 @@ async function main(pattern, options) {
         version,
     });
     
-    return tryExec(cmd)
+    return resolve(tryExec(cmd))
         .then(JSON.parse)
         .then(getVersion)
         .then(versionStore)
@@ -148,7 +149,7 @@ function _ifInstall(is, name) {
     if (!is)
         return;
     
-    return tryExec(`npm i ${name} --no-save`)
+    return resolve(tryExec(`npm i ${name} --no-save`))
         .then(write);
 }
 
@@ -163,8 +164,7 @@ function _ifCommit(is, name, path, version) {
     
     const cmd = `${commit} || true`;
     
-    return tryExec(cmd)
-        .then(write);
+    return write(tryExec(cmd));
 }
 
 async function find() {
