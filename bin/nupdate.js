@@ -92,6 +92,8 @@ async function updatePublishConfig({isPublic, isCommit}) {
     
     const path = await find();
     const data = fs.readFileSync(path, 'utf8');
+    const json = JSON.parse(data);
+    const {commitType = 'paren'} = json;
     const result = publishConfig(access, data);
     
     fs.writeFileSync(path, eof(result));
@@ -99,9 +101,13 @@ async function updatePublishConfig({isPublic, isCommit}) {
     if (!isCommit)
         return;
     
+    const commitColon = `git commit -m "chore: package: publishConfig: access: ${access}"`;
+    const commitParen= `git commit -m "chore(package) publishConfig: access: ${access}"`;
+    const commitByType = commitType === 'colon' ? commitColon : commitParen;
+    
     const commit = [
         `git add ${path}`,
-        `git commit -m "chore(package) publishConfig: access: ${access}"`,
+        commitByType ,
     ].join('&&');
     
     const cmd = `${commit} || true`;
@@ -157,9 +163,17 @@ function _ifCommit(is, name, path, version) {
     if (!is)
         return;
     
+    const data = fs.readFileSync(path(), 'utf8');
+    const json = JSON.parse(data);
+    const {commitType = 'paren'} = json;
+    
+    const commitColon = `git commit -m "feature: package: ${name} v${version()}"`;
+    const commitParen = `git commit -m "feature(package) ${name} v${version()}"`;
+    const commitByType = commitType === 'colon' ? commitColon : commitParen;
+
     const commit = [
         `git add ${path()}`,
-        `git commit -m "feature(package) ${name} v${version()}"`,
+        commitByType,
     ].join('&&');
     
     const cmd = `${commit} || true`;
