@@ -219,7 +219,7 @@ function exit(...args) {
 
 async function help() {
     const bin = require('../json/help.json');
-    const {defeault: forEachKey} = await import('for-each-key');
+    const {default: forEachKey} = await import('for-each-key');
     const usage = 'Usage: nupdate [pattern] [options]';
     
     const log = currify((a, b, c) => console.log(a, b, c));
