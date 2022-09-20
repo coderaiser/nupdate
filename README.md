@@ -28,17 +28,17 @@ nupdate eslint:8.0.0-beta.0
 ```
 Usage: nupdate [pattern] [options]
 Options:
--v, --version       - show version number and exit
--h, --help          - show help and exit
--D, --dev           - update development dependencies
--E, --save-exact    - save exact version of a dependency
--i, --install       - install dependency after updating
--c, --commit        - create commit with updated dependency
--a, --add           - add absent dependency
--r, --remove        - remove dependency
--*, --set-any       - set * as dependency version
---public            - set publichConfig access='public'
---restricted        - set publichConfig access='restricted'
+-v, --version        show version number and exit
+-h, --help           show help and exit
+-D, --dev            update development dependencies
+-E, --save-exact     save exact version of a dependency
+-i, --install        install dependency after updating
+-c, --commit         create commit with updated dependency
+-a, --add            add absent dependency
+-r, --remove         remove dependency
+-*, --set-any        set * as dependency version
+--public             set publichConfig access='public'
+--restricted         set publichConfig access='restricted'
 ```
 
 ### Use as module
