@@ -5,7 +5,7 @@ const stringify = (obj) => {
     return JSON.stringify(obj, null, 4);
 };
 
-test('update dependencies', (t) => {
+test('nupdate: update dependencies', (t) => {
     const info = stringify({
         dependencies: {
             rendy: '^4.1.0',
@@ -23,7 +23,7 @@ test('update dependencies', (t) => {
     t.end();
 });
 
-test('update devDependencies', (t) => {
+test('nupdate: update devDependencies', (t) => {
     const info = stringify({
         devDependencies: {
             rendy: '^4.1.0',
@@ -86,7 +86,7 @@ test('add: update no dependencies, no devDependencies', (t) => {
     t.end();
 });
 
-test('add, dev: update no dependencies, no devDependencies', (t) => {
+test('nupdate: add, dev: update no dependencies, no devDependencies', (t) => {
     const info = stringify({
         someDependencies: {
             rendy: '^4.1.0',
@@ -111,7 +111,7 @@ test('add, dev: update no dependencies, no devDependencies', (t) => {
     t.end();
 });
 
-test('not update when no dependencies, no devDependencies', (t) => {
+test('nupdate: not update when no dependencies, no devDependencies', (t) => {
     const info = stringify({
         someDependencies: {
             rendy: '^4.1.0',
@@ -124,7 +124,7 @@ test('not update when no dependencies, no devDependencies', (t) => {
     t.end();
 });
 
-test('update dendencies when dev flag set', (t) => {
+test('nupdate: update dendencies when dev flag set', (t) => {
     const info = stringify({
         dependencies: {
             rendy: '^4.1.0',

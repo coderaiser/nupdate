@@ -1,10 +1,9 @@
 {
   "name": "nupdate",
   "version": "10.0.1",
-  "description": "update node module dependency in package.json",
+  "description": "Update node module dependency in package.json",
   "main": "lib/nupdate.js",
   "type": "module",
-  "commitType": "colon",
   "bin": {
     "nupdate": "bin/nupdate.js"
   },
@@ -37,7 +36,6 @@
     "c8": "^7.8.0",
     "eslint": "^8.0.0",
     "eslint-plugin-n": "^15.6.1",
-    "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-putout": "^16.10.0",
     "madrun": "^9.0.0",
     "nodemon": "^2.0.2",

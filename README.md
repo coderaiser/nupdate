@@ -1,7 +1,7 @@
 # Nupdate [![License][LicenseIMGURL]][LicenseURL] [![NPM version][NPMIMGURL]][NPMURL] [![Build Status][BuildStatusIMGURL]][BuildStatusURL]
 
 Update node modules dependecy to last version in `package.json`. For bower you could use [bupdate](https://github.com/coderaiser/bupdate "bupdate").
-Respects `commitType = paren | colon` from `package.json`.
+Respects `commitType = colon | paren` from `package.json`.
 
 ## Install
 
@@ -64,7 +64,7 @@ nupdate('eslint', '4.0.0', info);
 // returns
 ({
     devDendencies: {
-        eslint: "4.0.0",
+        eslint: '4.0.0',
     },
 });
 ```

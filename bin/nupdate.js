@@ -50,7 +50,7 @@ const args = minimist(argv, {
     unknown: (cmd) => {
         const msg = `'%s' is not a nupdate option. See 'nupdate --help'.`;
         
-        if (/^--?/.test(cmd))
+        if (cmd.startsWith('--?'))
             exit(msg, cmd);
     },
 });
