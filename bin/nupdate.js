@@ -92,7 +92,7 @@ async function updatePublishConfig({isPublic, isCommit}) {
     
     const path = await find();
     const data = fs.readFileSync(path, 'utf8');
-    const {commitType = 'paren'} = JSON.parse(data);
+    const {commitType = 'colon'} = JSON.parse(data);
     const result = publishConfig(access, data);
     
     fs.writeFileSync(path, eof(result));
@@ -102,7 +102,7 @@ async function updatePublishConfig({isPublic, isCommit}) {
     
     const commitColon = `git commit -m "chore: package: publishConfig: access: ${access}"`;
     const commitParen = `git commit -m "chore(package) publishConfig: access: ${access}"`;
-    const commitByType = commitType === 'colon' ? commitColon : commitParen;
+    const commitByType = commitType === 'paren' ? commitParen : commitColon;
     
     const commit = [
         `git add ${path}`,
