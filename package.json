@@ -1,6 +1,6 @@
 {
   "name": "nupdate",
-  "version": "11.0.0",
+  "version": "11.0.1",
   "description": "Update node module dependency in package.json",
   "main": "lib/nupdate.js",
   "type": "module",
