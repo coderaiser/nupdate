@@ -117,7 +117,7 @@ async function updatePublishConfig({isPublic, isCommit}) {
 
 function getCmd({name, version}) {
     if (!version)
-        return `npm info ${name} --json`;
+        return `npm info ${name} --json --no-workspaces`;
     
     return `echo '{"version": "${version}"}'`;
 }
