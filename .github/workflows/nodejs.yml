@@ -20,9 +20,7 @@ jobs:
       - name: Install Redrun
         run: npm i redrun -g
       - name: Install
-        run: npm install -f
-      - name: Bootstrap
-        run: redrun bootstrap
+        run: npm install
       - name: Lint
         run: redrun lint
       - name: Coverage
