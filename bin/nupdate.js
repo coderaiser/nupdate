@@ -6,7 +6,6 @@ import {execSync} from 'child_process';
 import wraptile from 'wraptile';
 import currify from 'currify';
 import minimist from 'minimist';
-
 import eof from '../lib/eof.js';
 
 const require = createRequire(import.meta.url);
@@ -143,19 +142,28 @@ async function main(pattern, options) {
         .then(versionStore)
         .then(find)
         .then(pathStore)
-        .then(update(name, options, pathStore, versionStore))
+        .then(update(
+            name,
+            options,
+            pathStore,
+            versionStore,
+        ))
         .then(eof)
         .then(save(pathStore))
         .then(ifInstall(options.install, name))
-        .then(ifCommit(options.commit, name, pathStore, versionStore));
+        .then(ifCommit(
+            options.commit,
+            name,
+            pathStore,
+            versionStore,
+        ));
 }
 
 function _ifInstall(is, name) {
     if (!is)
         return;
     
-    return resolve(tryExec(`npm i ${name} --no-save`))
-        .then(write);
+    return resolve(tryExec(`npm i ${name} --no-save`)).then(write);
 }
 
 function _ifCommit(is, name, path, version) {
@@ -190,9 +198,8 @@ async function _update(name, options, path, version) {
     
     const {nupdate} = await import('../lib/nupdate.js');
     const info = fs.readFileSync(path(), 'utf8');
-    const result = nupdate(name, version(), info, options);
     
-    return result;
+    return nupdate(name, version(), info, options);
 }
 
 function tryExec(cmd) {
@@ -229,4 +236,3 @@ async function help() {
     
     forEachKey(log(' %s %s'), bin);
 }
-

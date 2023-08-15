@@ -10,4 +10,3 @@ test('eof: yes', (t) => {
     t.equal(eof('hello\n'), 'hello\n');
     t.end();
 });
-
