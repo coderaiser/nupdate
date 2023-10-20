@@ -167,21 +167,21 @@ function _ifInstall(is, name) {
     return resolve(tryExec(`npm i ${name} --no-save`)).then(write);
 }
 
-function _ifCommit({options, name, path, version}) {
+function _ifCommit({options, name, pathStore, versionStore}) {
     if (!options.commit)
         return;
     
-    const data = fs.readFileSync(path(), 'utf8');
+    const data = fs.readFileSync(pathStore(), 'utf8');
     const {commitType = 'colon'} = JSON.parse(data);
     
-    const message = options.remove ? ': drop' : ` v${version()}`;
+    const message = options.remove ? ': drop' : ` v${versionStore()}`;
     
     const commitColon = `git commit -m "feature: package: ${name}${message}"`;
     const commitParen = `git commit -m "feature(package) ${name}${message}"`;
     const commitByType = commitType === 'colon' ? commitColon : commitParen;
     
     const commit = [
-        `git add ${path()}`,
+        `git add ${pathStore()}`,
         commitByType,
     ].join('&&');
     
