@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 
-import {createRequire} from 'module';
-import fs from 'fs';
-import {execSync} from 'child_process';
+import {createRequire} from 'node:module';
+import fs from 'node:fs';
+import {execSync} from 'node:child_process';
 import wraptile from 'wraptile';
 import currify from 'currify';
 import minimist from 'minimist';
+import process from 'node:process';
 import eof from '../lib/eof.js';
 
 const require = createRequire(import.meta.url);
@@ -151,12 +152,12 @@ async function main(pattern, options) {
         .then(eof)
         .then(save(pathStore))
         .then(ifInstall(options.install, name))
-        .then(ifCommit(
-            options.commit,
+        .then(ifCommit({
+            options,
             name,
             pathStore,
             versionStore,
-        ));
+        }));
 }
 
 function _ifInstall(is, name) {
@@ -166,15 +167,17 @@ function _ifInstall(is, name) {
     return resolve(tryExec(`npm i ${name} --no-save`)).then(write);
 }
 
-function _ifCommit(is, name, path, version) {
-    if (!is)
+function _ifCommit({options, name, path, version}) {
+    if (!options.commit)
         return;
     
     const data = fs.readFileSync(path(), 'utf8');
     const {commitType = 'colon'} = JSON.parse(data);
     
-    const commitColon = `git commit -m "feature: package: ${name} v${version()}"`;
-    const commitParen = `git commit -m "feature(package) ${name} v${version()}"`;
+    const message = options.remove ? ': drop' : ` v${version()}`;
+    
+    const commitColon = `git commit -m "feature: package: ${name}${message}"`;
+    const commitParen = `git commit -m "feature(package) ${name}${message}"`;
     const commitByType = commitType === 'colon' ? commitColon : commitParen;
     
     const commit = [
