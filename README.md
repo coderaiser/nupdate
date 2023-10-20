@@ -56,7 +56,7 @@ Options:
   - `set-any` - set `*` as dependency version
 
 ```js
-import fs from 'fs';
+import fs from 'node:fs';
 import nupdate from 'nupdate';
 
 const info = fs.readFileSync('package.json', 'utf8');
