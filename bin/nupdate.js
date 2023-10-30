@@ -172,12 +172,12 @@ function _ifCommit({options, name, pathStore, versionStore}) {
         return;
     
     const data = fs.readFileSync(pathStore(), 'utf8');
-    const {commitType = 'colon'} = JSON.parse(data);
+    const {name: mainName, commitType = 'colon'} = JSON.parse(data);
     
     const message = options.remove ? ': drop' : ` v${versionStore()}`;
     
-    const commitColon = `git commit -m "feature: package: ${name}${message}"`;
-    const commitParen = `git commit -m "feature(package) ${name}${message}"`;
+    const commitColon = `git commit -m "feature: ${mainName}: ${name}${message}"`;
+    const commitParen = `git commit -m "feature(${mainName}) ${name}${message}"`;
     const commitByType = commitType === 'colon' ? commitColon : commitParen;
     
     const commit = [
