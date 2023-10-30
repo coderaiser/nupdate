@@ -1,3 +1,9 @@
+2023.10.30, v11.3.0
+
+feature:
+- e8caf4f package: eslint-plugin-putout v21.0.1
+- f7b1d21 package -> name of package
+
 2023.10.20, v11.2.1
 
 fix:
