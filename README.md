@@ -20,7 +20,7 @@ nupdate spawnify
 Update to known version:
 
 ```sh
-nupdate eslint:8.0.0-beta.0
+nupdate eslint:9.0.0-alpha.0
 ```
 
 ### Options
@@ -60,11 +60,11 @@ import fs from 'node:fs';
 import nupdate from 'nupdate';
 
 const info = fs.readFileSync('package.json', 'utf8');
-nupdate('eslint', '4.0.0', info);
+nupdate('eslint', '9.0.0:aplha.0', info);
 // returns
 ({
     devDendencies: {
-        eslint: '4.0.0',
+        eslint: '9.0.0',
     },
 });
 ```
