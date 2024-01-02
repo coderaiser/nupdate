@@ -55,7 +55,7 @@ const args = minimist(argv, {
     },
 });
 
-if (!args.length && args.help) {
+if (!args._.length || args.help) {
     help();
 } else if (args.version) {
     console.log('v' + require('../package').version);
