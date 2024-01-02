@@ -40,7 +40,7 @@
     "madrun": "^9.0.0",
     "nodemon": "^3.0.1",
     "putout": "^32.4.0",
-    "supertape": "^8.3.0"
+    "supertape": "^9.4.0"
   },
   "engines": {
     "node": ">=18"
