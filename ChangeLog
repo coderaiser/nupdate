@@ -1,3 +1,14 @@
+2024.01.02, v12.0.0
+
+feature:
+- 1ca14d2 nupdate: madrun v10.0.0
+- 725ec9b nupdate: eslint-plugin-putout v22.1.1
+- 05395b2 nupdate: putout v34.6.0
+- c99da6f nupdate: find-up v7.0.0
+- 41ddcee nupdate: supertape v9.4.0
+- 143cd22 show help when no args passed
+- 7c6dbe3 nupdate: drop support of node < 18
+
 2023.10.30, v11.3.1
 
 feature:
