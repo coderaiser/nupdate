@@ -1,5 +1,12 @@
 # Nupdate [![License][LicenseIMGURL]][LicenseURL] [![NPM version][NPMIMGURL]][NPMURL] [![Build Status][BuildStatusIMGURL]][BuildStatusURL]
 
+[NPMIMGURL]: https://img.shields.io/npm/v/nupdate.svg?style=flat
+[BuildStatusIMGURL]: https://github.com/coderaiser/nupdate/actions/workflows/nodejs.yml/badge.svg
+[LicenseIMGURL]: https://img.shields.io/badge/license-MIT-317BF9.svg?style=flat
+[NPMURL]: https://npmjs.org/package/nupdate "npm"
+[BuildStatusURL]: https://github.com/coderaiser/nupdate/actions/workflows/nodejs.yml "Build Status"
+[LicenseURL]: https://tldrlegal.com/license/mit-license "MIT License"
+
 Update node modules dependecy to last version in `package.json`. For bower you could use [bupdate](https://github.com/coderaiser/bupdate "bupdate").
 Respects `commitType = colon | paren` from `package.json`.
 
@@ -72,10 +79,3 @@ nupdate('eslint', '9.0.0:aplha.0', info);
 ## License
 
 MIT
-
-[NPMIMGURL]: https://img.shields.io/npm/v/nupdate.svg?style=flat
-[BuildStatusIMGURL]: https://img.shields.io/travis/coderaiser/nupdate/master.svg?style=flat
-[LicenseIMGURL]: https://img.shields.io/badge/license-MIT-317BF9.svg?style=flat
-[NPMURL]: https://npmjs.org/package/nupdate "npm"
-[BuildStatusURL]: https://travis-ci.org/coderaiser/nupdate "Build Status"
-[LicenseURL]: https://tldrlegal.com/license/mit-license "MIT License"
