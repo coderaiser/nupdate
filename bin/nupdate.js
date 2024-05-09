@@ -35,6 +35,7 @@ const args = minimist(argv, {
         'public',
         'restricted',
         'set-any',
+        'verify',
     ],
     alias: {
         'v': 'version',
@@ -46,6 +47,9 @@ const args = minimist(argv, {
         'r': 'remove',
         'c': 'commit',
         '*': 'set-any',
+    },
+    default: {
+        verify: true,
     },
     unknown: (cmd) => {
         const msg = `'%s' is not a nupdate option. See 'nupdate --help'.`;
@@ -59,7 +63,7 @@ if (!args._.length || args.help) {
     help();
 } else if (args.version) {
     console.log('v' + require('../package').version);
-} else if (args.public || args.restricted)
+}else if (args.public || args.restricted)
     updatePublishConfig({
         isPublic: args.public,
         isCommit: args.commit,
@@ -73,6 +77,7 @@ else
         add: args.add,
         remove: args.remove,
         setAny: args['set-any'],
+        verify: !args.verify,
     }).catch(onError);
 
 function getAccess({isPublic}) {
@@ -178,10 +183,11 @@ function _ifCommit({options, name, pathStore, versionStore}) {
     const commitColon = `git commit -m "feature: ${mainName}: ${name}${message}"`;
     const commitParen = `git commit -m "feature(${mainName}) ${name}${message}"`;
     const commitByType = commitType === 'colon' ? commitColon : commitParen;
+    const maybeNoVerify = !options.verify ? ' --no-verify' : '';
     
     const commit = [
         `git add ${pathStore()}`,
-        commitByType,
+        `${commitByType}${maybeNoVerify}`,
     ].join('&&');
     
     const cmd = `${commit} || true`;

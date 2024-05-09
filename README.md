@@ -46,6 +46,7 @@ Options:
 -*, --set-any        set * as dependency version
 --public             set publichConfig access='public'
 --restricted         set publichConfig access='restricted'
+--no-verify          pass '--no-verify' to git
 ```
 
 ### Use as module
