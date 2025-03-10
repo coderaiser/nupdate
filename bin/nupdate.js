@@ -3,10 +3,10 @@
 import {createRequire} from 'node:module';
 import fs from 'node:fs';
 import {execSync} from 'node:child_process';
+import process from 'node:process';
 import wraptile from 'wraptile';
 import currify from 'currify';
 import minimist from 'minimist';
-import process from 'node:process';
 import eof from '../lib/eof.js';
 
 const require = createRequire(import.meta.url);
@@ -59,11 +59,11 @@ const args = minimist(argv, {
     },
 });
 
-if (!args._.length || args.help) {
+if (!args._.length || args.help)
     help();
-} else if (args.version) {
+else if (args.version)
     console.log('v' + require('../package').version);
-}else if (args.public || args.restricted)
+else if (args.public || args.restricted)
     updatePublishConfig({
         isPublic: args.public,
         isCommit: args.commit,
@@ -210,18 +210,14 @@ async function _update(name, options, path, version) {
     return nupdate(name, version(), info, options);
 }
 
-function tryExec(cmd) {
-    return execSync(cmd).toString();
-}
+const tryExec = (cmd) => execSync(cmd).toString();
 
 function onError(error) {
     if (error)
         return console.error(error.message);
 }
 
-function getVersion(info) {
-    return info.version;
-}
+const getVersion = (info) => info.version;
 
 function _save(pathStore, data) {
     fs.writeFileSync(pathStore(), data);
