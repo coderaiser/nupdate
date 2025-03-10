@@ -7,7 +7,15 @@ import process from 'node:process';
 import wraptile from 'wraptile';
 import currify from 'currify';
 import minimist from 'minimist';
+import tryToCatch from 'try-to-catch';
+import tryCatch from 'try-catch';
 import eof from '../lib/eof.js';
+
+const {parse} = JSON;
+const {keys} = Object;
+
+const getVersion = (info) => info.version;
+const tryExec = (cmd) => execSync(cmd).toString();
 
 const require = createRequire(import.meta.url);
 
@@ -24,6 +32,7 @@ const argv = process.argv.slice(2);
 
 const args = minimist(argv, {
     boolean: [
+        'all',
         'version',
         'help',
         'save-exact',
@@ -59,26 +68,42 @@ const args = minimist(argv, {
     },
 });
 
-if (!args._.length || args.help)
+if (!args._.length && !args.all || args.help) {
     help();
-else if (args.version)
+} else if (args.version) {
     console.log('v' + require('../package').version);
-else if (args.public || args.restricted)
+} else if (args.public || args.restricted) {
     updatePublishConfig({
         isPublic: args.public,
         isCommit: args.commit,
     }).catch(onError);
-else
-    main(args._[0], {
-        exact: args['save-exact'],
-        install: args.install,
-        dev: args.dev,
-        commit: args.commit,
-        add: args.add,
-        remove: args.remove,
-        setAny: args['set-any'],
-        verify: !args.verify,
-    }).catch(onError);
+} else if (args.all) {
+    const [error] = tryCatch(execSync, 'npm out --json');
+    const json = parse(error.stdout.toString());
+    const names = keys(json);
+    
+    await runSeries(names);
+} else {
+    await runSeries(args._);
+}
+
+async function runSeries(names) {
+    for (const name of names) {
+        const [error] = await tryToCatch(main, name, {
+            exact: args['save-exact'],
+            install: args.install,
+            dev: args.dev,
+            commit: args.commit,
+            add: args.add,
+            remove: args.remove,
+            setAny: args['set-any'],
+            verify: !args.verify,
+        });
+        
+        if (error)
+            onError(error);
+    }
+}
 
 function getAccess({isPublic}) {
     if (isPublic)
@@ -210,14 +235,10 @@ async function _update(name, options, path, version) {
     return nupdate(name, version(), info, options);
 }
 
-const tryExec = (cmd) => execSync(cmd).toString();
-
 function onError(error) {
     if (error)
         return console.error(error.message);
 }
-
-const getVersion = (info) => info.version;
 
 function _save(pathStore, data) {
     fs.writeFileSync(pathStore(), data);
