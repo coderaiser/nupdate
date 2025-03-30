@@ -40,7 +40,7 @@
     "madrun": "^11.0.0",
     "nodemon": "^3.0.1",
     "putout": "^39.5.0",
-    "redlint": "^3.14.1",
+    "redlint": "^4.1.1",
     "supertape": "^10.0.0"
   },
   "engines": {
