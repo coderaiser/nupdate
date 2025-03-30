@@ -36,7 +36,7 @@
   "devDependencies": {
     "c8": "^10.1.3",
     "eslint": "^9.2.0",
-    "eslint-plugin-putout": "^25.1.2",
+    "eslint-plugin-putout": "^26.1.0",
     "madrun": "^10.0.0",
     "nodemon": "^3.0.1",
     "putout": "^38.5.3",
