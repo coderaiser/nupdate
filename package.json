@@ -39,7 +39,7 @@
     "eslint-plugin-putout": "^29.2.2",
     "madrun": "^11.0.0",
     "nodemon": "^3.0.1",
-    "putout": "^40.4.0",
+    "putout": "^41.3.3",
     "redlint": "^4.2.5",
     "supertape": "^11.0.4"
   },
