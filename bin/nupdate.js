@@ -7,8 +7,8 @@ import process from 'node:process';
 import wraptile from 'wraptile';
 import currify from 'currify';
 import minimist from 'minimist';
-import tryToCatch from 'try-to-catch';
-import tryCatch from 'try-catch';
+import {tryToCatch} from 'try-to-catch';
+import {tryCatch} from 'try-catch';
 import eof from '../lib/eof.js';
 
 const {parse} = JSON;
