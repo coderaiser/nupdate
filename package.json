@@ -20,7 +20,7 @@
   "dependencies": {
     "currify": "^4.0.0",
     "detect-indent": "^7.0.0",
-    "find-up": "^7.0.0",
+    "find-up": "^8.0.0",
     "finicky": "^2.0.1",
     "for-each-key": "^2.0.0",
     "fullstore": "^3.0.0",
