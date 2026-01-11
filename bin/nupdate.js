@@ -157,7 +157,7 @@ async function main(pattern, options) {
     
     const [name, version] = pattern.split(':');
     
-    const {default: fullstore} = await import('fullstore');
+    const {fullstore} = await import('fullstore');
     const versionStore = fullstore();
     const pathStore = fullstore();
     
