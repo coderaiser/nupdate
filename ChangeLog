@@ -1,3 +1,12 @@
+2026.02.08, v14.0.2
+
+feature:
+- 3bda446 nupdate: `npm -out --json` successded
+- 27f90f7 nupdate: nessy v6.0.0
+- 754e125 nupdate: jessy v5.0.0
+- 11cdf10 nupdate: eslint-plugin-putout v30.0.2
+- 4862563 nupdate: eslint v10.0.0
+
 2026.01.11, v14.0.1
 
 feature:
