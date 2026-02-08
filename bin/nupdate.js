@@ -79,6 +79,7 @@ if (!args._.length && !args.all || args.help) {
     }).catch(onError);
 } else if (args.all) {
     const [error] = tryCatch(execSync, 'npm out --json');
+    
     if (error) {
         const json = parse(error.stdout.toString());
         const names = keys(json);
