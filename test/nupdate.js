@@ -13,6 +13,7 @@ test('nupdate: update dependencies', (t) => {
     });
     
     const result = nupdate('rendy', '4.2.0', info);
+    
     const expected = stringify({
         dependencies: {
             rendy: '^4.2.0',
@@ -31,6 +32,7 @@ test('nupdate: update devDependencies', (t) => {
     });
     
     const result = nupdate('rendy', '4.2.0', info);
+    
     const expected = stringify({
         devDependencies: {
             rendy: '^4.2.0',
@@ -153,6 +155,7 @@ test('update dependencies: with dot', (t) => {
     });
     
     const result = nupdate('socket.io', '4.2.0', info);
+    
     const expected = stringify({
         dependencies: {
             'socket.io': '^4.2.0',
@@ -172,6 +175,7 @@ test('update dependencies: sort', (t) => {
     });
     
     const result = nupdate('rendy', '4.2.0', info);
+    
     const expected = stringify({
         dependencies: {
             express: '^5.0.0',
