@@ -41,7 +41,7 @@
     "putout": "^42.5.1",
     "redlint": "^6.5.0",
     "superc8": "^12.7.0",
-    "supertape": "^12.0.9"
+    "supertape": "^13.2.0"
   },
   "engines": {
     "node": ">=22"
