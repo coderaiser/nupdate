@@ -1,4 +1,6 @@
 name: Node CI
+permissions:
+  contents: write
 on:
   - push
   - pull_request
@@ -12,18 +14,20 @@ jobs:
           - 24.x
           - 26.x
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install Redrun
-        run: bun i redrun -g --no-save
+        run: bun i redrun madrun -g --no-save
       - name: Install
         run: bun install --no-save
+      - name: Init Madrun
+        run: madrun --init
       - name: Lint
         run: redrun lint
       - name: Coverage

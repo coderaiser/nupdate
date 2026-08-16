@@ -70,6 +70,7 @@ import nupdate from 'nupdate';
 
 const info = fs.readFileSync('package.json', 'utf8');
 nupdate('eslint', '9.0.0:aplha.0', info);
+
 // returns
 ({
     devDendencies: {
