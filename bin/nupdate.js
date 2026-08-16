@@ -10,11 +10,11 @@ import minimist from 'minimist';
 import {tryToCatch} from 'try-to-catch';
 import {tryCatch} from 'try-catch';
 import eof from '../lib/eof.js';
+import {getVersion} from '../lib/version.js';
 
 const {parse} = JSON;
 const {keys} = Object;
 
-const getVersion = (info) => info.version;
 const tryExec = (cmd) => execSync(cmd).toString();
 
 const require = createRequire(import.meta.url);
